@@ -251,7 +251,6 @@ body {
 
     .calendar-link {
         font-size: 11px;
-        padding: 3px 6px;
         align-self: flex-start;
     }
 
@@ -297,16 +296,19 @@ body {
     }
 
     .mobile-header {
-        background: white;
+        color: #d04848;
         border-radius: 12px;
         padding: 16px;
         text-align: center;
-        font-size: 18px;
+        font-size: 22px;
+        font-weight: 600;
         margin-bottom: 16px;
         height: 60px;
         display: flex;
         align-items: center;
         justify-content: center;
+        letter-spacing: 0.5px;
+        border: none;
     }
 
     .mobile-cards-container {
@@ -367,20 +369,20 @@ body {
 
     .mobile-card-title {
         grid-area: title;
-        font-size: 18px;
+        font-size: 22px;
         font-weight: bold;
         color: #d04848;
     }
 
     .mobile-card-time {
         grid-area: time;
-        font-size: 14px;
+        font-size: 22px;
         color: #666;
     }
 
     .mobile-card-location {
         grid-area: location;
-        font-size: 14px;
+        font-size: 20px;
         padding: 12px 0;
         border-top: 1px solid rgba(0,0,0,0.1);
         border-bottom: 1px solid rgba(0,0,0,0.1);
@@ -388,15 +390,27 @@ body {
 
     .mobile-card-description {
         grid-area: description;
-        font-size: 14px;
+        font-size: 20px;
         line-height: 1.4;
         color: #444;
     }
 
     .mobile-card .calendar-link {
         grid-area: calendar;
-        width: 100%;
+        width: auto;
+        display: flex;
+        align-items: center;
         justify-content: center;
+        gap: 8px;
+        background: #d04848;
+        color: white;
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-size: 20px;
+        text-align: center;
+        margin: 0;
+        align-self: start;
     }
 }
 

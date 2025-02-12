@@ -241,7 +241,8 @@ function initializeMobileView() {
             const event = events[currentIndex];
             const date = new Date(event.start.split(' ')[0]);
             
-            mobileHeader.textContent = date.toLocaleDateString('default', { 
+            // Russian locale for date formatting
+            mobileHeader.textContent = date.toLocaleDateString('ru-RU', { 
                 weekday: 'long', 
                 month: 'long', 
                 day: 'numeric' 
