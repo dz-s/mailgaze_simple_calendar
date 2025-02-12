@@ -174,13 +174,13 @@ function toggleEventDetails(event, eventDiv) {
     const endTime = `${endHour}:${endMinute}`;
     
     details.innerHTML = `
-        <a href="${createGoogleCalendarUrl(event)}" target="_blank" class="calendar-link" style="margin-bottom: 8px;">
-            📅 Add to Calendar
-        </a>
         <p class="event-time">
             <span class="time-section">
                 <span class="event-details-label">Time:</span> ${startTime} - ${endTime}
             </span>
+            <a href="${createGoogleCalendarUrl(event)}" target="_blank" class="calendar-link">
+                📅 Add to Calendar
+            </a>
         </p>
         <p class="event-location">
             <span class="event-details-label">Location:</span> 
