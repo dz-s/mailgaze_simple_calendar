@@ -12,7 +12,8 @@ const calendarData = {
             "people": ["Никколо Макиавелли", "Ханс Фрайер"],
             "location": "Библиотека, конференц-зал",
             "locationLink": "https://maps.google.com/?q=Library+Conference+Hall+Moscow",
-            "description": "Обсуждение Макиавелли и его трудов, таких как\n'Государь' и 'Рассуждения', а также взглядов\nХанса Фрайера на его роль в истории."
+            "description": "Обсуждение Макиавелли и его трудов, таких как\n'Государь' и 'Рассуждения', а также взглядов\nХанса Фрайера на его роль в истории.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Portrait_of_Niccol%C3%B2_Machiavelli_by_Santi_di_Tito.jpg/800px-Portrait_of_Niccol%C3%B2_Machiavelli_by_Santi_di_Tito.jpg"
         },
         {
             "id": 2,
@@ -22,7 +23,8 @@ const calendarData = {
             "people": ["Бён Чхоль Хан", "Петер Хандке"],
             "location": "Коворкинг-пространство",
             "locationLink": "https://maps.google.com/?q=Coworking+Space+Moscow",
-            "description": "Поп-психология, селф-хелп и продуктивность.\nОбсуждение работ Бён Чхоль Хана и Петера\nХандке, их взглядов на общество и усталость."
+            "description": "Поп-психология, селф-хелп и продуктивность.\nОбсуждение работ Бён Чхоль Хана и Петера\nХандке, их взглядов на общество и усталость.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Byung-Chul_Han_%282012%29.jpg/800px-Byung-Chul_Han_%282012%29.jpg"
         },
         {
             "id": 3,
@@ -32,7 +34,8 @@ const calendarData = {
             "people": ["Мартин Хайдеггер", "Уильям Джеймс"],
             "location": "Философский клуб",
             "locationLink": "https://maps.google.com/?q=Philosophy+Club+Moscow",
-            "description": "Как менялось понимание времени в философии.\nЭкзистенциальные идеи Хайдеггера, Уильяма\nДжеймса и других мыслителей о времени."
+            "description": "Как менялось понимание времени в философии.\nЭкзистенциальные идеи Хайдеггера, Уильяма\nДжеймса и других мыслителей о времени.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Martin_Heidegger.jpg/800px-Martin_Heidegger.jpg"
         },
         {
             "id": 4,
@@ -42,7 +45,8 @@ const calendarData = {
             "people": ["Ханна Хёх", "Giannina Censi"],
             "location": "Галерея современного искусства",
             "locationLink": "https://maps.google.com/?q=Modern+Art+Gallery+Moscow",
-            "description": "Наука, гендер и технологии XX века. Фемтеория,\nконструктивизм и их влияние на искусство:\nработы Ханны Хёх, Giannina Censi и других."
+            "description": "Наука, гендер и технологии XX века. Фемтеория,\nконструктивизм и их влияние на искусство:\nработы Ханны Хёх, Giannina Censi и других.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Hannah_H%C3%B6ch.jpg/800px-Hannah_H%C3%B6ch.jpg"
         }
     ]
 };
@@ -178,9 +182,12 @@ function toggleEventDetails(event, eventDiv) {
             <span class="time-section">
                 <span class="event-details-label">Time:</span> ${startTime} - ${endTime}
             </span>
-            <a href="${createGoogleCalendarUrl(event)}" target="_blank" class="calendar-link">
-                📅 Add to Calendar
-            </a>
+            <span class="event-actions">
+                ${event.image ? `<img src="${event.image}" class="event-image" alt="${event.title}">` : ''}
+                <a href="${createGoogleCalendarUrl(event)}" target="_blank" class="calendar-link">
+                    📅 Add to Calendar
+                </a>
+            </span>
         </p>
         <p class="event-location">
             <span class="event-details-label">Location:</span> 
