@@ -55,6 +55,7 @@ const calendarData = {
 function fetchEvents() {
     events = calendarData.events;
     renderCalendar();
+    initializeMobileView();
 }
 
 function renderCalendar() {
@@ -227,6 +228,81 @@ document.getElementById('nextMonth').addEventListener('click', () => {
     currentDate.setMonth(currentDate.getMonth() + 1);
     renderCalendar();
 });
+
+function initializeMobileView() {
+    if (window.innerWidth <= 768) {
+        const mobileCards = document.querySelector('.mobile-cards');
+        const mobileHeader = document.querySelector('.mobile-header');
+        let currentIndex = 0;
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function updateMobileView() {
+            const event = events[currentIndex];
+            const date = new Date(event.start.split(' ')[0]);
+            
+            mobileHeader.textContent = date.toLocaleDateString('default', { 
+                weekday: 'long', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+
+            mobileCards.innerHTML = events.map((evt, index) => `
+                <div class="mobile-card ${
+                    index === currentIndex ? 'active' :
+                    index < currentIndex ? 'prev' : 'next'
+                }">
+                    <img src="${evt.image}" alt="" class="mobile-card-image">
+                    <div class="mobile-card-title">${evt.title}</div>
+                    <div class="mobile-card-time">${evt.start.split(' ')[1]} - ${evt.end.split(' ')[1]}</div>
+                    <div class="mobile-card-location">
+                        <a href="${evt.locationLink}" target="_blank" class="location-link">
+                            📍 ${evt.location}
+                        </a>
+                    </div>
+                    <div class="mobile-card-description">${evt.description}</div>
+                    <a href="${createGoogleCalendarUrl(evt)}" target="_blank" class="calendar-link">
+                        📅 Add to Calendar
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        // Touch event handlers
+        mobileCards.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        mobileCards.addEventListener('touchmove', (e) => {
+            touchEndX = e.touches[0].clientX;
+            const diff = touchEndX - touchStartX;
+            const cards = document.querySelectorAll('.mobile-card');
+            
+            cards.forEach((card, index) => {
+                const offset = (index - currentIndex) * 100;
+                const dragOffset = diff / mobileCards.offsetWidth * 100;
+                card.style.transform = `translateX(${offset + dragOffset}%)`;
+            });
+        });
+
+        mobileCards.addEventListener('touchend', () => {
+            const diff = touchEndX - touchStartX;
+            if (Math.abs(diff) > 50) { // Minimum swipe distance
+                if (diff > 0 && currentIndex > 0) {
+                    currentIndex--;
+                } else if (diff < 0 && currentIndex < events.length - 1) {
+                    currentIndex++;
+                }
+            }
+            updateMobileView();
+        });
+
+        updateMobileView();
+    }
+}
+
+// Handle resize
+window.addEventListener('resize', initializeMobileView);
 
 // Initialize calendar
 fetchEvents(); 

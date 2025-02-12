@@ -8,21 +8,32 @@
 </head>
 <body>
     <div class="calendar-container">
-        <div class="calendar-header">
-            <button id="prevMonth">&lt;</button>
-            <h2 id="monthYear"></h2>
-            <button id="nextMonth">&gt;</button>
+        <!-- Desktop View -->
+        <div class="desktop-view">
+            <div class="calendar-header">
+                <button id="prevMonth">&lt;</button>
+                <h2 id="monthYear"></h2>
+                <button id="nextMonth">&gt;</button>
+            </div>
+            <div class="weekdays">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+            <div id="calendar" class="calendar-grid"></div>
         </div>
-        <div class="weekdays">
-            <div>Sun</div>
-            <div>Mon</div>
-            <div>Tue</div>
-            <div>Wed</div>
-            <div>Thu</div>
-            <div>Fri</div>
-            <div>Sat</div>
+        
+        <!-- Mobile View -->
+        <div class="mobile-view">
+            <div class="mobile-header"></div>
+            <div class="mobile-cards-container">
+                <div class="mobile-cards"></div>
+            </div>
         </div>
-        <div id="calendar" class="calendar-grid"></div>
     </div>
     
     <div id="eventModal" class="modal">

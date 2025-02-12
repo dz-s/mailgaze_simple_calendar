@@ -48,7 +48,7 @@ body {
     text-align: center;
     font-weight: bold;
     background-color: white;
-    padding: 6px 0;
+    padding: 4px 0;
     color: #222;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     font-size: 12px;
@@ -64,7 +64,7 @@ body {
 }
 
 .calendar-day {
-    min-height: 70px;
+    min-height: 60px;
     padding: 4px;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -131,12 +131,14 @@ body {
 .event-details.show {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
 }
 
 .event-details p {
     margin: 0;
-    gap: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 .event-details-label {
@@ -177,44 +179,43 @@ body {
 
 .event-description {
     white-space: pre-line;
-    line-height: 1.3;
+    line-height: 1.4;
     color: #222;
-    font-size: 11px;
 }
 
 @media (max-width: 768px) {
     .calendar-container {
-        margin: 10px;
-        padding: 10px;
+        margin: 5px;
+        padding: 5px;
     }
 
     .calendar-header {
-        padding: 8px;
+        padding: 4px;
     }
 
     .calendar-header button {
-        padding: 6px 12px;
-        font-size: 14px;
+        padding: 4px 8px;
+        font-size: 12px;
     }
 
     #monthYear {
-        font-size: 18px;
+        font-size: 14px;
     }
 
     .weekdays {
-        font-size: 12px;
-        padding: 8px 0;
+        padding: 3px 0;
+        font-size: 11px;
     }
 
     .calendar-grid {
-        gap: 4px;
+        gap: 1px;
         padding: 4px;
     }
 
     .calendar-day {
-        min-height: 60px;
+        min-height: 50px;
         padding: 4px;
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .event {
@@ -281,6 +282,121 @@ body {
 
     .event-actions {
         gap: 16px;
+    }
+
+    .desktop-view {
+        display: none;
+    }
+
+    .mobile-view {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        padding: 16px;
+        background: #f4eee8;
+    }
+
+    .mobile-header {
+        background: white;
+        border-radius: 12px;
+        padding: 16px;
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 16px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mobile-cards-container {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .mobile-cards {
+        height: 100%;
+        position: relative;
+        touch-action: pan-x;
+    }
+
+    .mobile-card {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        display: grid;
+        grid-template-areas: 
+            "image title"
+            "image time"
+            "location location"
+            "description description"
+            "calendar calendar";
+        grid-template-columns: 120px 1fr;
+        grid-template-rows: auto auto auto 1fr auto;
+        gap: 16px;
+        transition: transform 0.3s ease;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .mobile-card.active {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateX(0);
+    }
+
+    .mobile-card.prev {
+        transform: translateX(-100%);
+    }
+
+    .mobile-card.next {
+        transform: translateX(100%);
+    }
+
+    .mobile-card-image {
+        grid-area: image;
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .mobile-card-title {
+        grid-area: title;
+        font-size: 18px;
+        font-weight: bold;
+        color: #d04848;
+    }
+
+    .mobile-card-time {
+        grid-area: time;
+        font-size: 14px;
+        color: #666;
+    }
+
+    .mobile-card-location {
+        grid-area: location;
+        font-size: 14px;
+        padding: 12px 0;
+        border-top: 1px solid rgba(0,0,0,0.1);
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .mobile-card-description {
+        grid-area: description;
+        font-size: 14px;
+        line-height: 1.4;
+        color: #444;
+    }
+
+    .mobile-card .calendar-link {
+        grid-area: calendar;
+        width: 100%;
+        justify-content: center;
     }
 }
 
@@ -374,7 +490,7 @@ body {
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-left: 8px;
+    margin-left: -8px;
 }
 
 .event-image {
@@ -382,12 +498,7 @@ body {
     height: 64px;
     object-fit: cover;
     border-radius: 6px;
-    margin-left: -4px;
-    margin-right: 4px;
-}
-
-#monthYear {
-    font-size: 16px;
+    margin-left: -8px;
 }
 
 .modal {
@@ -396,13 +507,25 @@ body {
     z-index: -1;
     opacity: 0;
     pointer-events: none;
+    visibility: hidden;
 }
 
 .modal-content {
     position: fixed;
     left: -9999px;
-    visibility: hidden;
+    top: -9999px;
     width: 0;
     height: 0;
     overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.modal, .modal-content {
+    transition: none;
+    animation: none;
+}
+
+#monthYear {
+    font-size: 16px;
 } 
