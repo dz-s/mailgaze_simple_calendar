@@ -4,8 +4,8 @@ body {
 
 .calendar-container {
     max-width: 100%;
-    margin: 20px auto;
-    padding: 0 15px;
+    margin: 10px auto;
+    padding: 0 10px;
     font-family: Arial, sans-serif;
     background: white;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -21,20 +21,20 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 6px;
     background-color: white;
     border-radius: 8px 8px 0 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .calendar-header button {
-    padding: 8px 16px;
+    padding: 6px 12px;
     cursor: pointer;
     border: 2px solid #d04848;
     background: white;
     color: #d04848;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .calendar-header button:hover {
@@ -48,9 +48,10 @@ body {
     text-align: center;
     font-weight: bold;
     background-color: white;
-    padding: 10px 0;
+    padding: 6px 0;
     color: #222;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 12px;
 }
 
 .calendar-grid {
@@ -63,14 +64,15 @@ body {
 }
 
 .calendar-day {
-    min-height: 100px;
-    padding: 5px;
+    min-height: 70px;
+    padding: 4px;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 4px;
     position: relative;
+    font-size: 11px;
 }
 
 .calendar-day.other-month {
@@ -79,12 +81,12 @@ body {
 }
 
 .event {
-    margin: 2px 0;
-    padding: 4px 8px;
+    margin: 1px 0;
+    padding: 3px 6px;
     background-color: #d04848;
     color: white;
     border-radius: 3px;
-    font-size: 12px;
+    font-size: 11px;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
@@ -129,14 +131,12 @@ body {
 .event-details.show {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 }
 
 .event-details p {
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+    gap: 4px;
 }
 
 .event-details-label {
@@ -177,8 +177,9 @@ body {
 
 .event-description {
     white-space: pre-line;
-    line-height: 1.4;
+    line-height: 1.3;
     color: #222;
+    font-size: 11px;
 }
 
 @media (max-width: 768px) {
@@ -373,7 +374,7 @@ body {
     display: flex;
     align-items: center;
     gap: 16px;
-    margin-left: -8px;
+    margin-left: 8px;
 }
 
 .event-image {
@@ -381,5 +382,27 @@ body {
     height: 64px;
     object-fit: cover;
     border-radius: 6px;
-    margin-left: -8px;
+    margin-left: -4px;
+    margin-right: 4px;
+}
+
+#monthYear {
+    font-size: 16px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    position: fixed;
+    left: -9999px;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    overflow: hidden;
 } 
