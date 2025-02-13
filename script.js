@@ -53,9 +53,29 @@ const calendarData = {
     ]
 };
 
+// Function to load participants from storage
+function loadParticipants() {
+    const stored = localStorage.getItem('eventParticipants');
+    if (stored) {
+        eventParticipants = JSON.parse(stored);
+    } else {
+        // Initialize with zeros if no stored data
+        events.forEach(event => {
+            eventParticipants[event.id] = 0;
+        });
+        saveParticipants();
+    }
+}
+
+// Function to save participants to storage
+function saveParticipants() {
+    localStorage.setItem('eventParticipants', JSON.stringify(eventParticipants));
+}
+
 // Replace fetchEvents function with this simpler version
 function fetchEvents() {
     events = calendarData.events;
+    loadParticipants();  // Load stored participants
     renderCalendar();
     initializeMobileView();
 }
@@ -330,15 +350,13 @@ window.addEventListener('resize', initializeMobileView);
 // Initialize calendar
 fetchEvents();
 
-// Initialize participant counts
-events.forEach(event => {
-    eventParticipants[event.id] = 0;
-});
-
-// Add click handler for plus button
+// Update handlePlusClick to save changes
 function handlePlusClick(eventId, e) {
     e.stopPropagation();
     eventParticipants[eventId] = (eventParticipants[eventId] || 0) + 1;
+    
+    // Save to storage
+    saveParticipants();
     
     // Update all counters for this event
     document.querySelectorAll(`.event[data-event-id="${eventId}"] .participant-count`).forEach(counter => {
