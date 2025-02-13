@@ -395,8 +395,15 @@ body {
         color: #444;
     }
 
+    .mobile-card .calendar-actions {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
     .mobile-card .calendar-link {
-        grid-area: calendar;
+        flex: 1;
         width: auto;
         display: flex;
         align-items: center;
@@ -410,7 +417,6 @@ body {
         font-size: 20px;
         text-align: center;
         margin: 0;
-        align-self: start;
     }
 }
 
@@ -503,8 +509,8 @@ body {
 .event-actions {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-left: -8px;
+    gap: 5px;
+    margin-left: 8px;
 }
 
 .event-image {
@@ -542,4 +548,71 @@ body {
 
 #monthYear {
     font-size: 16px;
+}
+
+/* Common styles for the plus button */
+.plus-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 6px;
+    font-size: 18px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.plus-button:hover {
+    background: #45a049;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Mobile specific styles */
+.mobile-card .plus-button {
+    width: 50.5px;
+    height: 50.5px;
+    font-size: 22px;
+    transition: all 0.2s ease;
+}
+
+.mobile-card .plus-button:hover {
+    background: #45a049;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.calendar-actions {
+    grid-area: calendar;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mobile-card .calendar-actions {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mobile-card .calendar-link {
+    flex: 1;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #d04848;
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
 } 
