@@ -309,6 +309,24 @@ body {
         justify-content: center;
         letter-spacing: 0.5px;
         border: none;
+        position: relative;
+    }
+
+    .mobile-header .participant-count {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: #FFD700;
+        color: #333;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .mobile-cards-container {
@@ -563,6 +581,7 @@ body {
     font-size: 18px;
     text-decoration: none;
     transition: all 0.2s ease;
+    position: relative;
 }
 
 .plus-button:hover {
@@ -577,6 +596,9 @@ body {
     height: 50.5px;
     font-size: 22px;
     transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 }
 
 .mobile-card .plus-button:hover {
@@ -615,4 +637,40 @@ body {
     font-size: 20px;
     text-align: center;
     margin: 0;
+}
+
+/* Update counter styles */
+.participant-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #FFD700;  /* Golden yellow */
+    color: #333;         /* Darker text for better contrast */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.mobile-card .participant-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #FFD700;
+    color: #333;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 2;
 } 

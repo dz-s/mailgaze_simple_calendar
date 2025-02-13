@@ -1,5 +1,7 @@
 let currentDate = new Date();
 let events = [];
+let eventParticipants = {};
+let currentIndex = 0;  // Add this global variable
 
 // Replace fetch with direct data
 const calendarData = {
@@ -13,7 +15,7 @@ const calendarData = {
             "location": "Библиотека, конференц-зал",
             "locationLink": "https://maps.google.com/?q=Library+Conference+Hall+Moscow",
             "description": "Обсуждение Макиавелли и его трудов, таких как\n'Государь' и 'Рассуждения', а также взглядов\nХанса Фрайера на его роль в истории.",
-            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Portrait_of_Niccol%C3%B2_Machiavelli_by_Santi_di_Tito.jpg/800px-Portrait_of_Niccol%C3%B2_Machiavelli_by_Santi_di_Tito.jpg"
+            "image": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=200"
         },
         {
             "id": 2,
@@ -24,7 +26,7 @@ const calendarData = {
             "location": "Коворкинг-пространство",
             "locationLink": "https://maps.google.com/?q=Coworking+Space+Moscow",
             "description": "Поп-психология, селф-хелп и продуктивность.\nОбсуждение работ Бён Чхоль Хана и Петера\nХандке, их взглядов на общество и усталость.",
-            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Byung-Chul_Han_%282012%29.jpg/800px-Byung-Chul_Han_%282012%29.jpg"
+            "image": "https://images.unsplash.com/photo-1519834785169-98be25ec3f84?q=80&w=200"
         },
         {
             "id": 3,
@@ -35,7 +37,7 @@ const calendarData = {
             "location": "Философский клуб",
             "locationLink": "https://maps.google.com/?q=Philosophy+Club+Moscow",
             "description": "Как менялось понимание времени в философии.\nЭкзистенциальные идеи Хайдеггера, Уильяма\nДжеймса и других мыслителей о времени.",
-            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Martin_Heidegger.jpg/800px-Martin_Heidegger.jpg"
+            "image": "https://images.unsplash.com/photo-1501139083538-0139583c060f?q=80&w=200"
         },
         {
             "id": 4,
@@ -46,7 +48,7 @@ const calendarData = {
             "location": "Галерея современного искусства",
             "locationLink": "https://maps.google.com/?q=Modern+Art+Gallery+Moscow",
             "description": "Наука, гендер и технологии XX века. Фемтеория,\nконструктивизм и их влияние на искусство:\nработы Ханны Хёх, Giannina Censi и других.",
-            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Hannah_H%C3%B6ch.jpg/800px-Hannah_H%C3%B6ch.jpg"
+            "image": "https://images.unsplash.com/photo-1561043433-aaf687c4cf04?q=80&w=200"
         }
     ]
 };
@@ -105,7 +107,11 @@ function renderCalendar() {
         dayEvents.forEach(event => {
             const eventDiv = document.createElement('div');
             eventDiv.className = 'event';
-            eventDiv.textContent = event.title;
+            eventDiv.dataset.eventId = event.id;  // Add data attribute for easier selection
+            eventDiv.innerHTML = `
+                ${event.title}
+                <span class="participant-count">${eventParticipants[event.id] || 0}</span>
+            `;
             
             eventDiv.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -188,6 +194,9 @@ function toggleEventDetails(event, eventDiv) {
                 <a href="${createGoogleCalendarUrl(event)}" target="_blank" class="calendar-link">
                     📅 Add to Calendar
                 </a>
+                <a href="#" class="plus-button" onclick="event.preventDefault(); event.stopPropagation(); handlePlusClick(${event.id}, event)">
+                    +
+                </a>
             </span>
         </p>
         <p class="event-location">
@@ -241,7 +250,6 @@ function initializeMobileView() {
             const event = events[currentIndex];
             const date = new Date(event.start.split(' ')[0]);
             
-            // Russian locale for date formatting
             mobileHeader.textContent = date.toLocaleDateString('ru-RU', { 
                 weekday: 'long', 
                 month: 'long', 
@@ -253,6 +261,7 @@ function initializeMobileView() {
                     index === currentIndex ? 'active' :
                     index < currentIndex ? 'prev' : 'next'
                 }">
+                    <span class="participant-count">${eventParticipants[evt.id] || 0}</span>
                     <img src="${evt.image}" alt="" class="mobile-card-image">
                     <div class="mobile-card-title">${evt.title}</div>
                     <div class="mobile-card-time">${evt.start.split(' ')[1]} - ${evt.end.split(' ')[1]}</div>
@@ -262,11 +271,24 @@ function initializeMobileView() {
                         </a>
                     </div>
                     <div class="mobile-card-description">${evt.description}</div>
-                    <a href="${createGoogleCalendarUrl(evt)}" target="_blank" class="calendar-link">
-                        📅 Add to Calendar
-                    </a>
+                    <div class="calendar-actions">
+                        <a href="${createGoogleCalendarUrl(evt)}" target="_blank" class="calendar-link">
+                            📅 Add to Calendar
+                        </a>
+                        <button class="plus-button" id="plusButton-${evt.id}">
+                            +
+                        </button>
+                    </div>
                 </div>
             `).join('');
+
+            // Add touch handlers to plus buttons after rendering
+            events.forEach(evt => {
+                const button = document.getElementById(`plusButton-${evt.id}`);
+                if (button) {
+                    handleTouchButton(button, evt.id);
+                }
+            });
         }
 
         // Touch event handlers
@@ -306,4 +328,49 @@ function initializeMobileView() {
 window.addEventListener('resize', initializeMobileView);
 
 // Initialize calendar
-fetchEvents(); 
+fetchEvents();
+
+// Initialize participant counts
+events.forEach(event => {
+    eventParticipants[event.id] = 0;
+});
+
+// Add click handler for plus button
+function handlePlusClick(eventId, e) {
+    e.stopPropagation();
+    eventParticipants[eventId] = (eventParticipants[eventId] || 0) + 1;
+    
+    // Update all counters for this event
+    document.querySelectorAll(`.event[data-event-id="${eventId}"] .participant-count`).forEach(counter => {
+        counter.textContent = eventParticipants[eventId];
+    });
+
+    // Update mobile card counter
+    const mobileCounter = document.querySelector('.mobile-card.active .participant-count');
+    if (mobileCounter) {
+        mobileCounter.textContent = eventParticipants[eventId];
+    }
+}
+
+// Add touch event handler function
+function handleTouchButton(button, eventId) {
+    let touchStartTime;
+    let touchEndTime;
+    
+    button.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        touchStartTime = new Date().getTime();
+        button.style.transform = 'scale(0.95)';  // Visual feedback
+    });
+
+    button.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        touchEndTime = new Date().getTime();
+        button.style.transform = 'scale(1)';
+        
+        // Only trigger if it was a quick tap (less than 200ms)
+        if (touchEndTime - touchStartTime < 200) {
+            handlePlusClick(eventId, e);
+        }
+    });
+} 
