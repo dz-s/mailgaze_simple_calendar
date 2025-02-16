@@ -15,7 +15,13 @@ const calendarData = {
             "location": "Библиотека, конференц-зал",
             "locationLink": "https://maps.google.com/?q=Library+Conference+Hall+Moscow",
             "description": "Обсуждение Макиавелли и его трудов, таких как\n'Государь' и 'Рассуждения', а также взглядов\nХанса Фрайера на его роль в истории.",
-            "image": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=200"
+            "image": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=200",
+            "tags": ["политика", "философия", "власть", "история"],
+            "references": [
+                "Макиавелли Н. Государь / Пер. с ит. — М.: Планета, 1990.",
+                "The Politics of Cultural Despair: A Study in the Rise of the Germanic Ideology by Fritz Stern",
+                "Conservative Revolution in the Weimar Republic by Roger Woods"
+            ]
         },
         {
             "id": 2,
@@ -26,7 +32,12 @@ const calendarData = {
             "location": "Коворкинг-пространство",
             "locationLink": "https://maps.google.com/?q=Coworking+Space+Moscow",
             "description": "Поп-психология, селф-хелп и продуктивность.\nОбсуждение работ Бён Чхоль Хана и Петера\nХандке, их взглядов на общество и усталость.",
-            "image": "https://images.unsplash.com/photo-1519834785169-98be25ec3f84?q=80&w=200"
+            "image": "https://images.unsplash.com/photo-1519834785169-98be25ec3f84?q=80&w=200",
+            "tags": ["психология", "общество", "продуктивность", "выгорание"],
+            "references": [
+                "Han, Byung-Chul. The Burnout Society. Stanford University Press, 2015",
+                "Handke, Peter. Essay on Tiredness. Farrar, Straus and Giroux, 1994"
+            ]
         },
         {
             "id": 3,
@@ -37,7 +48,12 @@ const calendarData = {
             "location": "Философский клуб",
             "locationLink": "https://maps.google.com/?q=Philosophy+Club+Moscow",
             "description": "Как менялось понимание времени в философии.\nЭкзистенциальные идеи Хайдеггера, Уильяма\nДжеймса и других мыслителей о времени.",
-            "image": "https://images.unsplash.com/photo-1501139083538-0139583c060f?q=80&w=200"
+            "image": "https://images.unsplash.com/photo-1501139083538-0139583c060f?q=80&w=200",
+            "tags": ["философия", "время", "экзистенциализм", "сознание"],
+            "references": [
+                "Хайдеггер М. Бытие и время. — М.: Ad Marginem, 1997",
+                "James, William. The Principles of Psychology. Dover Publications, 1950"
+            ]
         },
         {
             "id": 4,
@@ -48,7 +64,12 @@ const calendarData = {
             "location": "Галерея современного искусства",
             "locationLink": "https://maps.google.com/?q=Modern+Art+Gallery+Moscow",
             "description": "Наука, гендер и технологии XX века. Фемтеория,\nконструктивизм и их влияние на искусство:\nработы Ханны Хёх, Giannina Censi и других.",
-            "image": "https://images.unsplash.com/photo-1561043433-aaf687c4cf04?q=80&w=200"
+            "image": "https://images.unsplash.com/photo-1561043433-aaf687c4cf04?q=80&w=200",
+            "tags": ["искусство", "технологии", "феминизм", "авангард"],
+            "references": [
+                "Höch, Hannah. Picture Book. Green Box, 2010",
+                "Lista, Giovanni. Futurism & Photography. Merrell Publishers, 2003"
+            ]
         }
     ]
 };
@@ -78,6 +99,7 @@ function fetchEvents() {
     loadParticipants();  // Load stored participants
     renderCalendar();
     initializeMobileView();
+    initializeViewToggle();
 }
 
 function renderCalendar() {
@@ -391,4 +413,80 @@ function handleTouchButton(button, eventId) {
             handlePlusClick(eventId, e);
         }
     });
+}
+
+// Add view toggle functionality
+function initializeViewToggle() {
+    const calendarView = document.querySelector('.calendar-view');
+    const cardsView = document.querySelector('.cards-view');
+    const calendarContainer = document.querySelector('.calendar-container');
+    const cardsContainer = document.querySelector('.cards-container');
+
+    // Check if elements exist before adding listeners
+    if (!calendarView || !cardsView || !calendarContainer || !cardsContainer) {
+        console.error('Required elements not found');
+        return;
+    }
+
+    calendarView.addEventListener('click', () => {
+        calendarView.classList.add('active');
+        cardsView.classList.remove('active');
+        calendarContainer.style.display = 'block';
+        cardsContainer.style.display = 'none';
+    });
+
+    cardsView.addEventListener('click', () => {
+        cardsView.classList.add('active');
+        calendarView.classList.remove('active');
+        calendarContainer.style.display = 'none';
+        cardsContainer.style.display = 'grid';
+        renderCards();
+    });
+
+    // Set initial state
+    calendarContainer.style.display = 'block';
+    cardsContainer.style.display = 'none';
+}
+
+function renderCards() {
+    const container = document.querySelector('.cards-container');
+    container.innerHTML = events.map(event => `
+        <div class="event-card">
+            <div class="event-card-header">
+                <img src="${event.image}" alt="" class="event-card-image">
+                <div>
+                    <h3 class="event-card-title">${event.title}</h3>
+                    <div class="event-card-time">
+                        ${event.start.split(' ')[1]} - ${event.end.split(' ')[1]}
+                    </div>
+                </div>
+            </div>
+            ${event.tags ? `
+                <div class="event-card-tags">
+                    ${event.tags.map(tag => `
+                        <span class="event-tag">${tag}</span>
+                    `).join('')}
+                </div>
+            ` : ''}
+            <p class="event-card-description">${event.description}</p>
+            ${event.references ? `
+                <div class="event-references">
+                    <h4>References:</h4>
+                    <ul>
+                        ${event.references.map(ref => `
+                            <li>${ref}</li>
+                        `).join('')}
+                    </ul>
+                </div>
+            ` : ''}
+            <div class="calendar-actions">
+                <a href="${createGoogleCalendarUrl(event)}" target="_blank" class="calendar-link">
+                    📅 Add to Calendar
+                </a>
+                <button class="plus-button" onclick="handlePlusClick(${event.id}, event)">
+                    +
+                </button>
+            </div>
+        </div>
+    `).join('');
 } 
