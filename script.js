@@ -289,16 +289,24 @@ function initializeMobileView() {
         let touchEndX = 0;
 
         function updateMobileView() {
-            const event = events[currentIndex];
+            const today = new Date();
+            const eventsMobile = events.filter(event => new Date(event.start) >= today); // Only future events
+
+            // Ensure currentIndex is within bounds
+            if (currentIndex < 0 || currentIndex >= eventsMobile.length) {
+                currentIndex = 0; // Reset to the first event if out of bounds
+            }
+
+            const event = eventsMobile[currentIndex]; // Get the current event
             const date = new Date(event.start.split(' ')[0]);
-            
+
             mobileHeader.textContent = date.toLocaleDateString('ru-RU', { 
                 weekday: 'long', 
                 month: 'long', 
                 day: 'numeric' 
             });
 
-            mobileCards.innerHTML = events.map((evt, index) => `
+            mobileCards.innerHTML = eventsMobile.map((evt, index) => `
                 <div class="mobile-card ${
                     index === currentIndex ? 'active' :
                     index < currentIndex ? 'prev' : 'next'
@@ -306,7 +314,7 @@ function initializeMobileView() {
                     <span class="participant-count">${eventParticipants[evt.id] || 0}</span>
                     <img src="${evt.image}" alt="" class="mobile-card-image">
                     <div class="mobile-card-title">${evt.title}</div>
-                    <div class="mobile-card-time">${evt.start.split(' ')[1]} - ${evt.end.split(' ')[1]}</div>
+                    <div class="mobile-card-time">${formatEventDate(evt.start)} ${evt.start.split(' ')[1]} - ${evt.end.split(' ')[1]}</div>
                     <div class="mobile-card-location">
                         <a href="${evt.locationLink}" target="_blank" class="location-link">
                             📍 ${evt.location}
@@ -325,7 +333,7 @@ function initializeMobileView() {
             `).join('');
 
             // Add touch handlers to plus buttons after rendering
-            events.forEach(evt => {
+            eventsMobile.forEach(evt => {
                 const button = document.getElementById(`plusButton-${evt.id}`);
                 if (button) {
                     handleTouchButton(button, evt.id);
@@ -461,7 +469,10 @@ function initializeViewToggle() {
 function renderCards(tab = 'upcoming') {
     const container = document.querySelector('.cards-content');
     const today = new Date();
-    
+
+    // Create an array for mobile view that only includes future events
+    const eventsMobile = events.filter(event => new Date(event.start) >= today);
+
     // Filter events based on tab
     const filteredEvents = events.filter(event => {
         const eventDate = new Date(event.start.split(' ')[0]);
@@ -475,7 +486,13 @@ function renderCards(tab = 'upcoming') {
         return tab === 'upcoming' ? dateA - dateB : dateB - dateA;
     });
 
-    container.innerHTML = filteredEvents.map(event => {
+    // Check if in mobile view
+    const isMobileView = window.innerWidth <= 768;
+
+    // Use eventsMobile for rendering in mobile view
+    const eventsToRender = isMobileView ? eventsMobile : filteredEvents;
+
+    container.innerHTML = eventsToRender.map(event => {
         const isPastEvent = new Date(event.start) < today; // Check if the event is in the past
         return `
             <div class="event-card ${isPastEvent ? 'past-event' : ''}">
