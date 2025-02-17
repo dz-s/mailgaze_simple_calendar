@@ -1,3 +1,5 @@
+const RELEASE_NUMBER = "v1.0.0"; // Release number
+
 let currentDate = new Date();
 let events = [];
 let eventParticipants = {};
