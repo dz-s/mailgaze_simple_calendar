@@ -1,5 +1,8 @@
 body {
     background-color: #f4eee8;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .calendar-container {
@@ -723,6 +726,8 @@ body {
     flex-direction: column;
     gap: 16px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: relative;
+    min-height: 400px;
 }
 
 .event-card-header {
@@ -741,6 +746,51 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: #d04848;
+    margin-bottom: 4px;
+}
+
+.event-card-time {
+    font-size: 16px;
+    color: #666;
+    margin-top: 4px;
+}
+
+.event-card-description {
+    font-size: 12px;
+    line-height: 1.4;
+    color: #444;
+    padding-bottom: 60px;
+}
+
+.event-card-description p {
+    margin: 0 0 8px 0;
+}
+
+.event-card-description strong {
+    color: #333;
+}
+
+.event-card-description em {
+    font-style: italic;
+}
+
+.event-card-description ul, 
+.event-card-description ol {
+    margin: 8px 0;
+    padding-left: 20px;
+}
+
+.event-card-description li {
+    margin-bottom: 4px;
+}
+
+.event-card-description a {
+    color: #d04848;
+    text-decoration: none;
+}
+
+.event-card-description a:hover {
+    text-decoration: underline;
 }
 
 .event-card-tags {
@@ -752,30 +802,69 @@ body {
 .event-tag {
     background: #f4eee8;
     color: #666;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
 }
 
 .event-references {
     border-top: 1px solid rgba(0,0,0,0.1);
     padding-top: 12px;
+    padding-bottom: 60px;
 }
 
 .event-references h4 {
     color: #666;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    font-size: 14px;
 }
 
 .event-references ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 14px;
+    font-size: 12px;
     color: #444;
+    line-height: 1.5;
 }
 
 .event-references li {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     line-height: 1.4;
+    padding-left: 20px;
+    position: relative;
+}
+
+.event-references li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #d04848;
+}
+
+/* Add specific font-family to cards if needed */
+.event-card,
+.event-card-title,
+.event-card-time,
+.event-card-description,
+.event-tag,
+.event-references {
+    font-family: inherit;  /* Ensure font inheritance */
+}
+
+/* Update calendar actions positioning */
+.event-card .calendar-actions {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: auto;  /* Override previous width: 100% */
+    margin-top: auto;
+    background: white;  /* Add background to cover content underneath */
+    padding: 4px;
+    border-radius: 6px;
+}
+
+/* Ensure content fills available space */
+.event-card > *:not(.calendar-actions) {
+    flex: 0 0 auto;
 } 

@@ -14,7 +14,7 @@ const calendarData = {
             "people": ["Никколо Макиавелли", "Ханс Фрайер"],
             "location": "Библиотека, конференц-зал",
             "locationLink": "https://maps.google.com/?q=Library+Conference+Hall+Moscow",
-            "description": "Обсуждение Макиавелли и его трудов, таких как\n'Государь' и 'Рассуждения', а также взглядов\nХанса Фрайера на его роль в истории.",
+            "description": "**Обсуждение Макиавелли** и его трудов, таких как:\n\n* 'Государь'\n* 'Рассуждения'\n\nА также взглядов *Ханса Фрайера* на его роль в истории.",
             "image": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=200",
             "tags": ["политика", "философия", "власть", "история"],
             "references": [
@@ -468,7 +468,9 @@ function renderCards() {
                     `).join('')}
                 </div>
             ` : ''}
-            <p class="event-card-description">${event.description}</p>
+            <div class="event-card-description">
+                ${marked.parse(event.description)}
+            </div>
             ${event.references ? `
                 <div class="event-references">
                     <h4>References:</h4>
