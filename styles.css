@@ -864,4 +864,44 @@ body {
 /* Ensure content fills available space */
 .event-card > *:not(.calendar-actions) {
     flex: 0 0 auto;
+}
+
+.cards-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.tab-btn {
+    padding: 10px 24px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background: #f4eee8;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: 500;
+    min-width: 140px;
+    text-align: center;
+}
+
+.tab-btn:hover {
+    background: #e9e3dd;
+    transform: translateY(-1px);
+}
+
+.tab-btn.active {
+    background: #d04848;
+    color: white;
+    border: 2px solid #b83b3b;
+    box-shadow: 0 2px 8px rgba(208, 72, 72, 0.2);
+}
+
+.cards-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
 } 

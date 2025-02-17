@@ -439,8 +439,18 @@ function initializeViewToggle() {
         cardsView.classList.add('active');
         calendarView.classList.remove('active');
         calendarContainer.style.display = 'none';
-        cardsContainer.style.display = 'grid';
-        renderCards();
+        cardsContainer.style.display = 'block';
+        renderCards('upcoming'); // Default to upcoming events
+    });
+
+    // Add tab functionality
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            renderCards(button.dataset.tab);
+        });
     });
 
     // Set initial state
@@ -448,16 +458,31 @@ function initializeViewToggle() {
     cardsContainer.style.display = 'none';
 }
 
-function renderCards() {
-    const container = document.querySelector('.cards-container');
-    container.innerHTML = events.map(event => `
+function renderCards(tab = 'upcoming') {
+    const container = document.querySelector('.cards-content');
+    const today = new Date();
+    
+    // Filter events based on tab
+    const filteredEvents = events.filter(event => {
+        const eventDate = new Date(event.start.split(' ')[0]);
+        return tab === 'upcoming' ? eventDate >= today : eventDate < today;
+    });
+
+    // Sort events
+    filteredEvents.sort((a, b) => {
+        const dateA = new Date(a.start);
+        const dateB = new Date(b.start);
+        return tab === 'upcoming' ? dateA - dateB : dateB - dateA;
+    });
+
+    container.innerHTML = filteredEvents.map(event => `
         <div class="event-card">
             <div class="event-card-header">
                 <img src="${event.image}" alt="" class="event-card-image">
                 <div>
                     <h3 class="event-card-title">${event.title}</h3>
                     <div class="event-card-time">
-                        ${event.start.split(' ')[1]} - ${event.end.split(' ')[1]}
+                        ${formatEventDate(event.start)} ${event.start.split(' ')[1]} - ${event.end.split(' ')[1]}
                     </div>
                 </div>
             </div>
@@ -491,4 +516,14 @@ function renderCards() {
             </div>
         </div>
     `).join('');
+}
+
+// Helper function to format date
+function formatEventDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('ru-RU', { 
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
 } 
