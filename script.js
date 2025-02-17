@@ -8,8 +8,8 @@ const calendarData = {
     "events": [
         {
             "id": 1,
-            "start": "2025-03-10 18:00",
-            "end": "2025-03-10 20:00",
+            "start": "2025-02-10 18:00",
+            "end": "2025-02-10 20:00",
             "title": "Государь – книга диктаторов",
             "people": ["Никколо Макиавелли", "Ханс Фрайер"],
             "location": "Библиотека, конференц-зал",
@@ -475,47 +475,50 @@ function renderCards(tab = 'upcoming') {
         return tab === 'upcoming' ? dateA - dateB : dateB - dateA;
     });
 
-    container.innerHTML = filteredEvents.map(event => `
-        <div class="event-card">
-            <div class="event-card-header">
-                <img src="${event.image}" alt="" class="event-card-image">
-                <div>
-                    <h3 class="event-card-title">${event.title}</h3>
-                    <div class="event-card-time">
-                        ${formatEventDate(event.start)} ${event.start.split(' ')[1]} - ${event.end.split(' ')[1]}
+    container.innerHTML = filteredEvents.map(event => {
+        const isPastEvent = new Date(event.start) < today; // Check if the event is in the past
+        return `
+            <div class="event-card ${isPastEvent ? 'past-event' : ''}">
+                <div class="event-card-header">
+                    <img src="${event.image}" alt="" class="event-card-image ${isPastEvent ? 'past-image' : ''}">
+                    <div>
+                        <h3 class="event-card-title ${isPastEvent ? 'past-title' : ''}">${event.title}</h3>
+                        <div class="event-card-time">
+                            ${formatEventDate(event.start)} ${event.start.split(' ')[1]} - ${event.end.split(' ')[1]}
+                        </div>
                     </div>
                 </div>
-            </div>
-            ${event.tags ? `
-                <div class="event-card-tags">
-                    ${event.tags.map(tag => `
-                        <span class="event-tag">${tag}</span>
-                    `).join('')}
-                </div>
-            ` : ''}
-            <div class="event-card-description">
-                ${marked.parse(event.description)}
-            </div>
-            ${event.references ? `
-                <div class="event-references">
-                    <h4>References:</h4>
-                    <ul>
-                        ${event.references.map(ref => `
-                            <li>${ref}</li>
+                ${event.tags ? `
+                    <div class="event-card-tags">
+                        ${event.tags.map(tag => `
+                            <span class="event-tag">${tag}</span>
                         `).join('')}
-                    </ul>
+                    </div>
+                ` : ''}
+                <div class="event-card-description">
+                    ${marked.parse(event.description)}
                 </div>
-            ` : ''}
-            <div class="calendar-actions">
-                <a href="${createGoogleCalendarUrl(event)}" target="_blank" class="calendar-link">
-                    📅 Add to Calendar
-                </a>
-                <button class="plus-button" onclick="handlePlusClick(${event.id}, event)">
-                    +
-                </button>
+                ${event.references ? `
+                    <div class="event-references">
+                        <h4>References:</h4>
+                        <ul>
+                            ${event.references.map(ref => `
+                                <li>${ref}</li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                ` : ''}
+                <div class="calendar-actions" style="display: ${new Date(event.start) >= today ? 'flex' : 'none'};">
+                    <a href="${createGoogleCalendarUrl(event)}" target="_blank" class="calendar-link">
+                        📅 Add to Calendar
+                    </a>
+                    <button class="plus-button" onclick="handlePlusClick(${event.id}, event)">
+                        +
+                    </button>
+                </div>
             </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 // Helper function to format date
