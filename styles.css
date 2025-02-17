@@ -187,6 +187,15 @@ body {
 }
 
 @media (max-width: 768px) {
+    .view-toggle,
+    .desktop-view {
+        display: none !important;
+    }
+
+    .mobile-view {
+        display: flex !important;
+    }
+
     .calendar-container {
         margin: 5px;
         padding: 5px;
@@ -439,6 +448,18 @@ body {
         text-align: center;
         margin: 0;
     }
+
+    .view-toggle {
+        display: none;
+    }
+
+    .cards-container {
+        padding: 10px;
+    }
+
+    .event-card {
+        min-height: 300px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -642,40 +663,16 @@ body {
     margin: 0;
 }
 
-/* Update counter styles */
+/* Hide all participant counts */
 .participant-count {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: #FFD700;  /* Golden yellow */
-    color: #333;         /* Darker text for better contrast */
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: none !important;  /* Use !important to override any existing styles */
 }
 
-.mobile-card .participant-count {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background: #FFD700;
-    color: #333;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    z-index: 2;
+.mobile-card .participant-count,
+.event .participant-count,
+.mobile-header .participant-count,
+.event-card .participant-count {
+    display: none !important;
 }
 
 .view-toggle {
