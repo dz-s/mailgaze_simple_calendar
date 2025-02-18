@@ -725,11 +725,26 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     position: relative;
     min-height: 400px;
+    overflow: hidden;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    z-index: 0;
 }
 
 .event-card-header {
     display: flex;
     gap: 16px;
+    position: relative;
+    z-index: 1;
 }
 
 .event-card-image {
@@ -744,6 +759,14 @@ body {
     font-weight: bold;
     color: #d04848;
     margin-bottom: 4px;
+    display: inline-block;
+    background-color: white;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 0;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .event-card-time {
@@ -757,6 +780,8 @@ body {
     line-height: 1.4;
     color: #444;
     padding-bottom: 60px;
+    position: relative;
+    z-index: 1;
 }
 
 .event-card-description p {
@@ -794,6 +819,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    position: relative;
+    z-index: 1;
 }
 
 .event-tag {
@@ -805,7 +832,7 @@ body {
 }
 
 .event-references {
-    border-top: 1px solid rgba(0,0,0,0.1);
+    border-top: 2px solid rgba(0,0,0,0.1);
     padding-top: 12px;
     padding-bottom: 60px;
 }
@@ -856,7 +883,6 @@ body {
     right: 20px;
     width: auto;  /* Override previous width: 100% */
     margin-top: auto;
-    background: white;  /* Add background to cover content underneath */
     padding: 4px;
     border-radius: 6px;
 }

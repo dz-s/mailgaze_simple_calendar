@@ -1,4 +1,4 @@
-const RELEASE_NUMBER = "v1.0.0"; // Release number
+const RELEASE_NUMBER = "v1.1.0"; // Release number
 
 let currentDate = new Date();
 let events = [];
