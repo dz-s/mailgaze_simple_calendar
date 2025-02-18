@@ -1,78 +1,59 @@
-const RELEASE_NUMBER = "v1.0.0"; // Release number
+const RELEASE_NUMBER = "v1.1.0"; // Release number
 
 let currentDate = new Date();
 let events = [];
 let eventParticipants = {};
 let currentIndex = 0;  // Add this global variable
 
+const colorThemes = {
+    light: {
+        textColor: '#ffffff', // White text for dark backgrounds
+        titleColor: '#d04848', // White title for dark backgrounds
+    },
+    dark: {
+        textColor: '#000000', // Black text for light backgrounds
+        titleColor: '#d04848', // Black title for light backgrounds
+    }
+};
+
 // Replace fetch with direct data
 const calendarData = {
     "events": [
         {
             "id": 1,
-            "start": "2025-02-10 18:00",
-            "end": "2025-02-10 20:00",
-            "title": "Государь – книга диктаторов",
-            "people": ["Никколо Макиавелли", "Ханс Фрайер"],
-            "location": "Библиотека, конференц-зал",
-            "locationLink": "https://maps.google.com/?q=Library+Conference+Hall+Moscow",
-            "description": "**Обсуждение Макиавелли** и его трудов, таких как:\n\n* 'Государь'\n* 'Рассуждения'\n\nА также взглядов *Ханса Фрайера* на его роль в истории.",
-            "image": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=200",
-            "tags": ["политика", "философия", "власть", "история"],
+            "start": "2025-02-22 12:00",
+            "end": "2025-02-22 15:00",
+            "title": "(Во)Время",
+            "people": ["Мартин Хайдеггер", "Уильям Джеймс", "Альберт Эйнштейн"],
+            "location": "???",
+            "locationLink": "none",
+            "description": "На данной встрече я предлагаю поговорить о том, как воспринималась и как менялось понимание такой категории нашей жизни как время. Перечислим ключевые изменения в понимании времени, а также чуть более подробно коснемся экзистенциальной мыcли в этом контексте: различия времени/временности, восприятие и проживание",
+            "image": "https://cdn.midjourney.com/48c2157e-af25-46b4-8cd2-1c2b51a6cd45/0_0.png",
+            "backgroundImage": "https://cdn.midjourney.com/48c2157e-af25-46b4-8cd2-1c2b51a6cd45/0_0.png",
+            "tags": ["философия", "время", "экзистенциализм", "физика"],
             "references": [
-                "Макиавелли Н. Государь / Пер. с ит. — М.: Планета, 1990.",
-                "The Politics of Cultural Despair: A Study in the Rise of the Germanic Ideology by Fritz Stern",
-                "Conservative Revolution in the Weimar Republic by Roger Woods"
+              "Хайдеггер М. Бытие и время. — М.: Ad Marginem, 1997",
+              "James, William. The Principles of Psychology. Dover Publications, 1950",
+              "Einstein, Albert. Relativity: The Special and General Theory. Crown Publishers, 1961"
             ]
         },
         {
-            "id": 2,
-            "start": "2025-03-15 17:30",
-            "end": "2025-03-15 19:30",
-            "title": "Усталость",
-            "people": ["Бён Чхоль Хан", "Петер Хандке"],
-            "location": "Коворкинг-пространство",
-            "locationLink": "https://maps.google.com/?q=Coworking+Space+Moscow",
-            "description": "Поп-психология, селф-хелп и продуктивность.\nОбсуждение работ Бён Чхоль Хана и Петера\nХандке, их взглядов на общество и усталость.",
-            "image": "https://images.unsplash.com/photo-1519834785169-98be25ec3f84?q=80&w=200",
-            "tags": ["психология", "общество", "продуктивность", "выгорание"],
-            "references": [
-                "Han, Byung-Chul. The Burnout Society. Stanford University Press, 2015",
-                "Handke, Peter. Essay on Tiredness. Farrar, Straus and Giroux, 1994"
-            ]
-        },
-        {
-            "id": 3,
-            "start": "2025-03-20 18:00",
-            "end": "2025-03-20 20:00",
-            "title": "(Во)время",
-            "people": ["Мартин Хайдеггер", "Уильям Джеймс"],
-            "location": "Философский клуб",
-            "locationLink": "https://maps.google.com/?q=Philosophy+Club+Moscow",
-            "description": "Как менялось понимание времени в философии.\nЭкзистенциальные идеи Хайдеггера, Уильяма\nДжеймса и других мыслителей о времени.",
-            "image": "https://images.unsplash.com/photo-1501139083538-0139583c060f?q=80&w=200",
-            "tags": ["философия", "время", "экзистенциализм", "сознание"],
-            "references": [
-                "Хайдеггер М. Бытие и время. — М.: Ad Marginem, 1997",
-                "James, William. The Principles of Psychology. Dover Publications, 1950"
-            ]
-        },
-        {
-            "id": 4,
-            "start": "2025-03-25 19:00",
-            "end": "2025-03-25 21:00",
-            "title": "Фемтех: авангардное видение слияния женщины и машины",
-            "people": ["Ханна Хёх", "Giannina Censi"],
-            "location": "Галерея современного искусства",
-            "locationLink": "https://maps.google.com/?q=Modern+Art+Gallery+Moscow",
-            "description": "Наука, гендер и технологии XX века. Фемтеория,\nконструктивизм и их влияние на искусство:\nработы Ханны Хёх, Giannina Censi и других.",
-            "image": "https://images.unsplash.com/photo-1561043433-aaf687c4cf04?q=80&w=200",
-            "tags": ["искусство", "технологии", "феминизм", "авангард"],
-            "references": [
-                "Höch, Hannah. Picture Book. Green Box, 2010",
-                "Lista, Giovanni. Futurism & Photography. Merrell Publishers, 2003"
-            ]
-        }
+          "id": 2,
+          "start": "2025-03-08 12:00",
+          "end": "2025-03-08 15:00",
+          "title": "Фемтех: слияние женщины и машины",
+          "people": ["Ханна Хёх", "Giannina Censi"],
+          "location": "???",
+          "locationLink": null,
+          "description": "Наука, гендер и технологии XX века. Фемтеория,\nконструктивизм и их влияние на искусство:\nработы Ханны Хёх, Giannina Censi и других.",
+          "image": "https://i.pinimg.com/736x/74/2f/ed/742fede45a47f1b740228ca48a0393c9.jpg",
+          "backgroundImage": "https://i.pinimg.com/736x/74/2f/ed/742fede45a47f1b740228ca48a0393c9.jpg",
+          "tags": ["искусство", "технологии", "феминизм", "авангард"],
+          "references": [
+              "Höch, Hannah. Picture Book. Green Box, 2010",
+              "Lista, Giovanni. Futurism & Photography. Merrell Publishers, 2003"
+          ]
+      } 
     ]
 };
 
@@ -496,13 +477,19 @@ function renderCards(tab = 'upcoming') {
 
     container.innerHTML = eventsToRender.map(event => {
         const isPastEvent = new Date(event.start) < today; // Check if the event is in the past
+        const hasBackgroundImage = event.backgroundImage && event.backgroundImage.trim() !== '';
+        
+        // Determine the theme based on the background image presence
+        const theme = hasBackgroundImage ? colorThemes.light : colorThemes.dark;
+
         return `
             <div class="event-card ${isPastEvent ? 'past-event' : ''}">
-                <div class="event-card-header">
-                    <img src="${event.image}" alt="" class="event-card-image ${isPastEvent ? 'past-image' : ''}">
+                <div class="background-image" style="background-image: url('${event.backgroundImage || ''}');"></div>
+                <div class="event-card-header" style="color: ${theme.textColor};">
+                    ${event.image && !hasBackgroundImage ? `<img src="${event.image}" alt="" class="event-card-image ${isPastEvent ? 'past-image' : ''}">` : ''}
                     <div>
-                        <h3 class="event-card-title ${isPastEvent ? 'past-title' : ''}">${event.title}</h3>
-                        <div class="event-card-time">
+                        <h3 class="event-card-title" style="color: ${theme.titleColor}; background-color: ${hasBackgroundImage ? 'white' : 'transparent'}; font-weight: ${hasBackgroundImage ? 'bold' : 'normal'};">${event.title}</h3>
+                        <div class="event-card-time" style="color: ${theme.textColor};};">
                             ${formatEventDate(event.start)} ${event.start.split(' ')[1]} - ${event.end.split(' ')[1]}
                         </div>
                     </div>
@@ -514,15 +501,15 @@ function renderCards(tab = 'upcoming') {
                         `).join('')}
                     </div>
                 ` : ''}
-                <div class="event-card-description">
+                <div class="event-card-description" style="color: ${theme.textColor}; font-weight: ${hasBackgroundImage ? 'bold' : 'normal'};">
                     ${marked.parse(event.description)}
                 </div>
                 ${event.references ? `
                     <div class="event-references">
-                        <h4>References:</h4>
+                        <h4 style="color: ${theme.textColor};">References:</h4>
                         <ul>
                             ${event.references.map(ref => `
-                                <li>${ref}</li>
+                                <li style="color: ${theme.textColor};">${ref}</li>
                             `).join('')}
                         </ul>
                     </div>
