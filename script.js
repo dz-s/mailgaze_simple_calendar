@@ -7,7 +7,7 @@ let currentIndex = 0;  // Add this global variable
 
 const colorThemes = {
     light: {
-        textColor: '#ffffff', // White text for dark backgrounds
+        textColor: 'black', // White text for dark backgrounds
         titleColor: '#d04848', // White title for dark backgrounds
     },
     dark: {
@@ -490,7 +490,7 @@ function renderCards(tab = 'upcoming') {
                     <div>
                         <h3 class="event-card-title" style="color: ${theme.titleColor}; background-color: ${hasBackgroundImage ? 'white' : 'transparent'}; font-weight: ${hasBackgroundImage ? 'bold' : 'normal'};">${event.title}</h3>
                         <div class="event-card-time" style="color: ${theme.textColor};};">
-                            ${formatEventDate(event.start)} ${event.start.split(' ')[1]} - ${event.end.split(' ')[1]}
+                            🕑️ ${formatEventDate(event.start)} ${event.start.split(' ')[1]} - ${event.end.split(' ')[1]}
                         </div>
                     </div>
                 </div>
@@ -535,4 +535,9 @@ function formatEventDate(dateString) {
         month: 'long',
         year: 'numeric'
     });
-} 
+}
+
+// Initialize Twemoji
+document.addEventListener("DOMContentLoaded", function() {
+    twemoji.parse(document.body);
+}); 
