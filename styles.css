@@ -755,7 +755,7 @@ body {
 }
 
 .event-card-title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: #d04848;
     margin-bottom: 4px;
@@ -770,7 +770,7 @@ body {
 }
 
 .event-card-time {
-    font-size: 16px;
+    font-size: 14px;
     color: #666;
     margin-top: 4px;
     background-color: #f4eee8;
@@ -798,6 +798,7 @@ body {
 
 .event-card-description p {
     margin: 0 0 8px 0;
+    font-weight: normal;
 }
 
 .event-card-description strong {
