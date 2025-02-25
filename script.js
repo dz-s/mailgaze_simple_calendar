@@ -9,8 +9,10 @@ const colorThemes = {
     light: {
         textColor: '#ffffff', // White text for dark backgrounds
         titleColor: '#d04848', // White title for dark backgrounds
+        referenceColor: '#ffffff',
     },
     dark: {
+        referenceColor: '#ffffff',
         textColor: '#000000', // Black text for light backgrounds
         titleColor: '#d04848', // Black title for light backgrounds
     }
@@ -504,9 +506,11 @@ function renderCards(tab = 'upcoming') {
                 <div class="event-card-description" style="color: ${theme.textColor}; font-weight: ${hasBackgroundImage ? 'bold' : 'normal'};">
                     ${marked.parse(event.description)}
                 </div>
+
+                <hr/>
+
                 ${event.references ? `
                     <div class="event-references">
-                        <h4 style="color: ${theme.textColor};">References:</h4>
                         <ul>
                             ${event.references.map(ref => `
                                 <li style="color: ${theme.textColor};">${ref}</li>
@@ -514,6 +518,7 @@ function renderCards(tab = 'upcoming') {
                         </ul>
                     </div>
                 ` : ''}
+           
                 <div class="calendar-actions" style="display: ${new Date(event.start) >= today ? 'flex' : 'none'};">
                     <a href="${createGoogleCalendarUrl(event)}" target="_blank" class="calendar-link">
                         📅 Add to Calendar

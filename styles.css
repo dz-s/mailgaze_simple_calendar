@@ -832,7 +832,6 @@ body {
 }
 
 .event-references {
-    border-top: 2px solid rgba(0,0,0,0.1);
     padding-top: 12px;
     padding-bottom: 60px;
 }
@@ -874,6 +873,15 @@ body {
 .event-tag,
 .event-references {
     font-family: inherit;  /* Ensure font inheritance */
+}
+
+.event-references li{
+    text-shadow: 0.5px 0.5px black;
+}
+
+.event-card-time,
+.event-card-description{
+    text-shadow: 0.5px 0.5px black;
 }
 
 /* Update calendar actions positioning */
@@ -965,3 +973,12 @@ footer p {
     margin: 0;
     color: #666;
 } 
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 2px solid lightgrey;
+    margin: 1em 0;
+    padding: 0;
+}
