@@ -755,7 +755,7 @@ body {
 }
 
 .event-card-title {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     color: #d04848;
     margin-bottom: 4px;
@@ -764,15 +764,16 @@ body {
     border-radius: 8px;
     padding: 8px;
     margin: 0;
-    max-width: 90%;
+    max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .event-card-time {
-    font-size: 16px;
+    font-size: 14px;
     color: #666;
     margin-top: 4px;
+    border-bottom: 1px solid #dcdcdc;
 }
 
 .event-card-description {
@@ -830,9 +831,10 @@ body {
 .event-tag {
     background: #f4eee8;
     color: #666;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    line-height: 1.2;
 }
 
 .event-references {
@@ -985,4 +987,30 @@ hr {
     border-top: 2px solid lightgrey;
     margin: 1em 0;
     padding: 0;
+}
+
+.event-card-location {
+    padding: 4px; /* Add padding */
+    margin-top: 2px; /* Add some space above the location */
+    font-size: 12px; /* Adjust font size if needed */
+    text-align: left; /* Align text to the left */
+}
+
+.event-card-location a {
+    color: white; /* Link color */
+    text-decoration: none; /* Remove underline */
+    text-shadow: 0.5px 0.5px black;
+}
+
+.event-card-location a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+.event-card-price {
+    font-size: 12px; /* Adjust font size */
+    color: white; /* Text color */
+    margin-top: 4px; /* Space above the price */
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center vertically */
+    text-shadow: 0.5px 0.5px black;
 }

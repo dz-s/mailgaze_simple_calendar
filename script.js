@@ -534,8 +534,22 @@ function renderCards(tab = 'upcoming') {
                     ${event.image && !hasBackgroundImage ? `<img src="${event.image}" alt="" class="event-card-image ${isPastEvent ? 'past-image' : ''}">` : ''}
                     <div>
                         <h3 class="event-card-title" style="color: ${theme.titleColor}; background-color: ${hasBackgroundImage ? 'white' : 'transparent'}; font-weight: ${hasBackgroundImage ? 'bold' : 'normal'};">${event.title}</h3>
-                        <div class="event-card-time" style="color: ${theme.textColor};};">
+        
+                    </div>
+                    <div>
+                    <div class="event-card-time" style="color: ${theme.textColor};">
                             ${formatEventDate(event.start)} ${event.start.split('T')[1]} - ${event.end.split('T')[1]}
+                        </div>
+
+                        <div style="display: flex; align-items: center;">
+                        <div class="event-card-location">
+                            <a href="${event.locationLink}" target="_blank" class="location-link">
+                                📍 ${event.location}
+                            </a>
+                        </div>
+                        <div class="event-card-price">
+                            💰 30 PLN
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -554,7 +568,7 @@ function renderCards(tab = 'upcoming') {
                     <a href="${createGoogleCalendarUrl(event)}" target="_blank" class="calendar-link">
                         📅 Add to Calendar
                     </a>
-                    <button class="plus-button" style="display: none; onclick="handlePlusClick(${event.id}, event)">
+                    <button class="plus-button" onclick="handlePlusClick(${event.id}, event)">
                         +
                     </button>
                 </div>
