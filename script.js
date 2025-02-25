@@ -5,12 +5,12 @@ const calendarData = {
     "events": [
         {
             "id": 1,
-            "start": "2025-02-22 11:55",
-            "end": "2025-02-22 14:55",
+            "start": "2025-02-22T12:00",
+            "end": "2025-02-22T15:00",
             "title": "(Во)Время",
             "people": ["Мартин Хайдеггер", "Уильям Джеймс", "Альберт Эйнштейн"],
-            "location": "???",
-            "locationLink": "none",
+            "location": "XOXO Coffee",
+            "locationLink": "https://maps.app.goo.gl/vonENerm2rqTDwzB9",
             "description": "На данной встрече я предлагаю поговорить о том, как воспринималась и как менялось понимание такой категории нашей жизни как время. Перечислим ключевые изменения в понимании времени, а также чуть более подробно коснемся экзистенциальной мыcли в этом контексте: различия времени/временности, восприятие и проживание",
             "image": "https://cdn.midjourney.com/48c2157e-af25-46b4-8cd2-1c2b51a6cd45/0_0.png",
             "backgroundImage": "https://cdn.midjourney.com/48c2157e-af25-46b4-8cd2-1c2b51a6cd45/0_0.png",
@@ -23,12 +23,12 @@ const calendarData = {
         },
         {
             "id": 2,
-            "start": "2025-03-08 11:55",
-            "end": "2025-03-08 14:55",
+            "start": "2025-03-08T12:00",
+            "end": "2025-03-08T15:00",
             "title": "Вопрос о технике. Фемтех: слияние женщины и машины",
             "people": ["Ханна Хёх", "Giannina Censi"],
-            "location": "???",
-            "locationLink": null,
+            "location": "XOXO Coffee",
+            "locationLink": "https://maps.app.goo.gl/vonENerm2rqTDwzB9",
             "description": "Как технологии формируют гендерные представления и какое место занимает женщина в мире машин? Мы обсудим феминистскую теорию, влияние конструктивизма и футуризма на искусство, а также рассмотрим работы Ханны Хёх и Giannina Censi, чьи практики соединяют тело, механику и новые медиа. От фотомонтажа до киберфеминизма — поговорим о том, как технологии и искусство переосмысливают границы женского тела и идентичности.",
             "image": "https://i.pinimg.com/736x/74/2f/ed/742fede45a47f1b740228ca48a0393c9.jpg",
             "backgroundImage": "https://i.pinimg.com/736x/74/2f/ed/742fede45a47f1b740228ca48a0393c9.jpg",
@@ -41,30 +41,30 @@ const calendarData = {
 
         {
             "id": 3,
-            "start": "2025-03-15 11:55",
-            "end": "2025-03-15 14:55",
+            "start": "2025-03-15T12:00",
+            "end": "2025-03-15T15:00",
             "title": "Perfect Saturday",
             "people": ["Wim Wenders"],
-            "location": "???",
-            "locationLink": null,
+            "location": "XOXO Coffee",
+            "locationLink": "https://maps.app.goo.gl/vonENerm2rqTDwzB9",
             "description": `Приглашаю вас на теплую и душевную встречу, посвященную фильму *Perfect Days* Вима Вендерса.
           Мы обсудим саму картину, упомянутые там книги и музыкальные произведения.
           Поговорим о культурных особенностях Японии, простых радостях жизни, минимализме и смысле повседневных ритуалов.
           Это отличная возможность погрузиться в атмосферу фильма, поделиться впечатлениями и, возможно, открыть для себя что-то новое.`,
             "image": "https://i.pinimg.com/736x/6b/92/34/6b9234e2e8667b773e0d52b8f98298bb.jpg",
             "backgroundImage": "https://i.pinimg.com/736x/6b/92/34/6b9234e2e8667b773e0d52b8f98298bb.jpg",
-            "tags": ["искусство", "кино", "япония", "киноанализ", "философия", "минимализм", "музыка", "литература", "культура"],
+            "tags": ["искусство", "кино", "япония", "минимализм", "музыка", "литература"],
             "references": []
         },
           
         {
             "id": 4,
-            "start": "2025-03-01 11:55",
-            "end": "2025-03-01 14:55",
+            "start": "2025-03-01T12:00",
+            "end": "2025-03-01T15:00",
             "title": "Баньши Варшавы",
             "people": ["Кьеркегор", "Макдона", "Хайдеггер"],
-            "location": "???",
-            "locationLink": null,
+            "location": "XOXO Coffee",
+            "locationLink": "https://maps.app.goo.gl/vonENerm2rqTDwzB9",
             "description": "Последнее произведение режиссера Мартина Макдоны \"Банши Инишерина\" представляет собой трагикомедию, которая исследует сложные человеческие взаимоотношения, насилие и одиночество. Проще подумать о том, какой проблематики в этом фильме нет места, чем стараться найти и перечислить все и вся. Как когда-то цивилизация и культура с ее проблемами вышла из маленьких общин, так и простая жизнь островного поселения содержит в себе все конфликты и социальные тревоги разом.",
             "image": "https://i.pinimg.com/736x/94/54/07/9454071acae1fb06d92ab8a3565b30b5.jpg",
             "backgroundImage": "https://i.pinimg.com/736x/94/54/07/9454071acae1fb06d92ab8a3565b30b5.jpg",
@@ -115,6 +115,10 @@ function saveParticipants() {
 // Replace fetchEvents function with this simpler version
 function fetchEvents() {
     events = calendarData.events;
+
+    // Sort events from earliest to latest
+    events.sort((a, b) => new Date(a.start) - new Date(b.start));
+
     loadParticipants();  // Load stored participants
     renderCards('upcoming');
     initializeMobileView();
@@ -157,7 +161,7 @@ function renderCalendar() {
         // Add events for this day
         const dayEvents = events.filter(event => {
             // Parse the date string correctly
-            const [datePart] = event.start.split(' ');
+            const [datePart] = event.start.split('T');
             const [year, month, date] = datePart.split('-').map(Number);
 
             return date === day &&
@@ -197,16 +201,18 @@ function renderCalendar() {
 
 function createGoogleCalendarUrl(event) {
     // Format dates for Google Calendar
-    const startDate = event.start.replace(' ', 'T');
-    const endDate = event.end.replace(' ', 'T');
+    const startDate = event.start;
+    const endDate = event.end;
+
+    const dates = convertToGoogleCalendarDates(startDate, endDate);
 
     // Create calendar URL with parameters
     const url = new URL('https://www.google.com/calendar/render');
     url.searchParams.append('action', 'TEMPLATE');
     url.searchParams.append('text', event.title);
-    url.searchParams.append('dates', `${startDate}/${endDate}`.replace(/[-:]/g, ''));
+    url.searchParams.append('dates', dates);
     url.searchParams.append('details', `${event.description}`);
-    url.searchParams.append('location', event.location);
+    url.searchParams.append('location', event.location.split(' ').join('+') + ',' + '+Warsaw');
 
     return url.toString();
 }
@@ -238,9 +244,9 @@ function toggleEventDetails(event, eventDiv) {
     details.className = 'event-details';
 
     // Format the time
-    const [datePart, timePart] = event.start.split(' ');
+    const [datePart, timePart] = event.start.split('T');
     const [startHour, startMinute] = timePart.split(':');
-    const [endHour, endMinute] = event.end.split(' ')[1].split(':');
+    const [endHour, endMinute] = event.end.split('T')[1].split(':');
 
     const startTime = `${startHour}:${startMinute}`;
     const endTime = `${endHour}:${endMinute}`;
@@ -255,7 +261,7 @@ function toggleEventDetails(event, eventDiv) {
                 <a href="${createGoogleCalendarUrl(event)}" target="_blank" class="calendar-link">
                     📅 Add to Calendar
                 </a>
-                <a href="#" class="plus-button" onclick="event.preventDefault(); event.stopPropagation(); handlePlusClick(${event.id}, event)">
+                <a href="#" class="plus-button" style="display: none;" onclick="event.preventDefault(); event.stopPropagation(); handlePlusClick(${event.id}, event)">
                     +
                 </a>
             </span>
@@ -317,7 +323,7 @@ function initializeMobileView() {
             }
 
             const event = eventsMobile[currentIndex]; // Get the current event
-            const date = new Date(event.start.split(' ')[0]);
+            const date = new Date(event.start.split('T')[0]);
 
             mobileHeader.textContent = date.toLocaleDateString('ru-RU', {
                 weekday: 'long',
@@ -343,7 +349,7 @@ function initializeMobileView() {
                         <a href="${createGoogleCalendarUrl(evt)}" target="_blank" class="calendar-link">
                             📅 Add to Calendar
                         </a>
-                        <button class="plus-button" id="plusButton-${evt.id}">
+                        <button class="plus-button" style="display: none; id="plusButton-${evt.id}">
                             +
                         </button>
                     </div>
@@ -497,7 +503,7 @@ function renderCards(tab = 'upcoming') {
 
     // Filter events based on tab
     const filteredEvents = events.filter(event => {
-        const eventDate = new Date(event.start.split(' ')[0]);
+        const eventDate = new Date(event.start.split('T')[0]);
         return tab === 'upcoming' ? eventDate >= today : eventDate < today;
     });
 
@@ -529,7 +535,7 @@ function renderCards(tab = 'upcoming') {
                     <div>
                         <h3 class="event-card-title" style="color: ${theme.titleColor}; background-color: ${hasBackgroundImage ? 'white' : 'transparent'}; font-weight: ${hasBackgroundImage ? 'bold' : 'normal'};">${event.title}</h3>
                         <div class="event-card-time" style="color: ${theme.textColor};};">
-                            ${formatEventDate(event.start)} ${event.start.split(' ')[1]} - ${event.end.split(' ')[1]}
+                            ${formatEventDate(event.start)} ${event.start.split('T')[1]} - ${event.end.split('T')[1]}
                         </div>
                     </div>
                 </div>
@@ -548,7 +554,7 @@ function renderCards(tab = 'upcoming') {
                     <a href="${createGoogleCalendarUrl(event)}" target="_blank" class="calendar-link">
                         📅 Add to Calendar
                     </a>
-                    <button class="plus-button" onclick="handlePlusClick(${event.id}, event)">
+                    <button class="plus-button" style="display: none; onclick="handlePlusClick(${event.id}, event)">
                         +
                     </button>
                 </div>
@@ -566,3 +572,27 @@ function formatEventDate(dateString) {
         year: 'numeric'
     });
 } 
+
+function convertToGoogleCalendarDates(start, end) {
+    // Parse start and end dates
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+
+    // Format the dates to the required ISO 8601 format (without dashes and colons)
+    const formatDate = (date) => {
+        const year = date.getUTCFullYear();
+        const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+        const day = String(date.getUTCDate()).padStart(2, '0');
+        const hours = String(date.getUTCHours()).padStart(2, '0');
+        const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+        const seconds = String(date.getUTCSeconds()).padStart(2, '0');
+        return `${year}${month}${day}T${hours}${minutes}${seconds}Z`; // Add Z for UTC
+    };
+
+    // Get the formatted start and end dates
+    const startFormatted = formatDate(startDate);
+    const endFormatted = formatDate(endDate);
+
+    // Return the dates parameter for Google Calendar
+    return `${startFormatted}/${endFormatted}`;
+}
