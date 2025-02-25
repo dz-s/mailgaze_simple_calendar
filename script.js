@@ -1,23 +1,5 @@
 const RELEASE_NUMBER = "v1.1.0"; // Release number
 
-let currentDate = new Date();
-let events = [];
-let eventParticipants = {};
-let currentIndex = 0;  // Add this global variable
-
-const colorThemes = {
-    light: {
-        textColor: '#ffffff', // White text for dark backgrounds
-        titleColor: '#d04848', // White title for dark backgrounds
-        referenceColor: '#ffffff',
-    },
-    dark: {
-        referenceColor: '#ffffff',
-        textColor: '#000000', // Black text for light backgrounds
-        titleColor: '#d04848', // Black title for light backgrounds
-    }
-};
-
 // Replace fetch with direct data
 const calendarData = {
     "events": [
@@ -55,8 +37,58 @@ const calendarData = {
               "Höch, Hannah. Picture Book. Green Box, 2010",
               "Lista, Giovanni. Futurism & Photography. Merrell Publishers, 2003"
           ]
-      } 
+      } ,
+
+      {
+        "id": 3,
+        "start": "2025-03-15 12:00",
+        "end": "2025-03-15 15:00",
+        "title": "Perfect Saturday",
+        "people": ["Wim Wenders"],
+        "location": "???",
+        "locationLink": null,
+        "description": `Предлагаю нам с вами просто собраться и обсудить этот безусловно приятный фильм, упомянутые там книги и музыкальные произведения, культурные особенности Японии и многое другое.`,
+        "image": "https://i.pinimg.com/736x/6b/92/34/6b9234e2e8667b773e0d52b8f98298bb.jpg",
+        "backgroundImage": "https://i.pinimg.com/736x/6b/92/34/6b9234e2e8667b773e0d52b8f98298bb.jpg",
+        "tags": ["искусство","кино", "япония"],
+        "references": [
+        ]
+    } ,
+
+    {
+        "id": 4,
+        "start": "2025-03-1 12:00",
+        "end": "2025-03-1 15:00",
+        "title": "Баньши Варшавы",
+        "people": ["Кьеркегор, Макдонна, Хайдеггер"],
+        "location": "???",
+        "locationLink": null,
+        "description": ``,
+        "image": "https://i.pinimg.com/736x/94/54/07/9454071acae1fb06d92ab8a3565b30b5.jpg",
+        "backgroundImage": "https://i.pinimg.com/736x/94/54/07/9454071acae1fb06d92ab8a3565b30b5.jpg",
+        "tags": ["философия", "кино", "экзистенциализм"],
+        "references": [
+        ]
+    } 
     ]
+};
+
+let currentDate = new Date();
+let events = [];
+let eventParticipants = {};
+let currentIndex = 0;  // Add this global variable
+
+const colorThemes = {
+    light: {
+        textColor: '#ffffff', // White text for dark backgrounds
+        titleColor: '#d04848', // White title for dark backgrounds
+        referenceColor: '#ffffff',
+    },
+    dark: {
+        referenceColor: '#ffffff',
+        textColor: '#000000', // Black text for light backgrounds
+        titleColor: '#d04848', // Black title for light backgrounds
+    }
 };
 
 // Function to load participants from storage
