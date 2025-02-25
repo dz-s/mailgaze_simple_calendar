@@ -11,6 +11,7 @@ const calendarData = {
             "people": ["Мартин Хайдеггер", "Уильям Джеймс", "Альберт Эйнштейн"],
             "location": "XOXO Coffee",
             "locationLink": "https://maps.app.goo.gl/vonENerm2rqTDwzB9",
+            "price": "30 PLN",
             "description": "На данной встрече я предлагаю поговорить о том, как воспринималась и как менялось понимание такой категории нашей жизни как время. Перечислим ключевые изменения в понимании времени, а также чуть более подробно коснемся экзистенциальной мыcли в этом контексте: различия времени/временности, восприятие и проживание",
             "image": "https://cdn.midjourney.com/48c2157e-af25-46b4-8cd2-1c2b51a6cd45/0_0.png",
             "backgroundImage": "https://cdn.midjourney.com/48c2157e-af25-46b4-8cd2-1c2b51a6cd45/0_0.png",
@@ -29,6 +30,7 @@ const calendarData = {
             "people": ["Ханна Хёх", "Giannina Censi"],
             "location": "XOXO Coffee",
             "locationLink": "https://maps.app.goo.gl/vonENerm2rqTDwzB9",
+            "price": "30 PLN",
             "description": "Как технологии формируют гендерные представления и какое место занимает женщина в мире машин? Мы обсудим феминистскую теорию, влияние конструктивизма и футуризма на искусство, а также рассмотрим работы Ханны Хёх и Giannina Censi, чьи практики соединяют тело, механику и новые медиа. От фотомонтажа до киберфеминизма — поговорим о том, как технологии и искусство переосмысливают границы женского тела и идентичности.",
             "image": "https://i.pinimg.com/736x/74/2f/ed/742fede45a47f1b740228ca48a0393c9.jpg",
             "backgroundImage": "https://i.pinimg.com/736x/74/2f/ed/742fede45a47f1b740228ca48a0393c9.jpg",
@@ -47,6 +49,7 @@ const calendarData = {
             "people": ["Wim Wenders"],
             "location": "XOXO Coffee",
             "locationLink": "https://maps.app.goo.gl/vonENerm2rqTDwzB9",
+            "price": "Free",
             "description": `Приглашаю вас на теплую и душевную встречу, посвященную фильму *Perfect Days* Вима Вендерса.
           Мы обсудим саму картину, упомянутые там книги и музыкальные произведения.
           Поговорим о культурных особенностях Японии, простых радостях жизни, минимализме и смысле повседневных ритуалов.
@@ -65,6 +68,7 @@ const calendarData = {
             "people": ["Кьеркегор", "Макдона", "Хайдеггер"],
             "location": "XOXO Coffee",
             "locationLink": "https://maps.app.goo.gl/vonENerm2rqTDwzB9",
+            "price": "30 PLN",
             "description": "Последнее произведение режиссера Мартина Макдоны \"Банши Инишерина\" представляет собой трагикомедию, которая исследует сложные человеческие взаимоотношения, насилие и одиночество. Проще подумать о том, какой проблематики в этом фильме нет места, чем стараться найти и перечислить все и вся. Как когда-то цивилизация и культура с ее проблемами вышла из маленьких общин, так и простая жизнь островного поселения содержит в себе все конфликты и социальные тревоги разом.",
             "image": "https://i.pinimg.com/736x/94/54/07/9454071acae1fb06d92ab8a3565b30b5.jpg",
             "backgroundImage": "https://i.pinimg.com/736x/94/54/07/9454071acae1fb06d92ab8a3565b30b5.jpg",
@@ -259,7 +263,7 @@ function toggleEventDetails(event, eventDiv) {
             <span class="event-actions">
                 ${event.image ? `<img src="${event.image}" class="event-image" alt="${event.title}">` : ''}
                 <a href="${createGoogleCalendarUrl(event)}" target="_blank" class="calendar-link">
-                    📅 Add to Calendar
+                    🗓️  Add to Calendar
                 </a>
                 <a href="#" class="plus-button" style="display: none;" onclick="event.preventDefault(); event.stopPropagation(); handlePlusClick(${event.id}, event)">
                     +
@@ -347,7 +351,7 @@ function initializeMobileView() {
                     <div class="mobile-card-description">${evt.description}</div>
                     <div class="calendar-actions">
                         <a href="${createGoogleCalendarUrl(evt)}" target="_blank" class="calendar-link">
-                            📅 Add to Calendar
+                            🗓️  Add to Calendar
                         </a>
                         <button class="plus-button" style="display: none; id="plusButton-${evt.id}">
                             +
@@ -548,7 +552,7 @@ function renderCards(tab = 'upcoming') {
                             </a>
                         </div>
                         <div class="event-card-price">
-                            💰 30 PLN
+                            💰 ${event.price}
                         </div>
                         </div>
                     </div>
@@ -566,7 +570,7 @@ function renderCards(tab = 'upcoming') {
 
                 <div class="calendar-actions" style="display: ${new Date(event.start) >= today ? 'flex' : 'none'};">
                     <a href="${createGoogleCalendarUrl(event)}" target="_blank" class="calendar-link">
-                        📅 Add to Calendar
+                        🗓️  Add to Calendar
                     </a>
                     <button class="plus-button" onclick="handlePlusClick(${event.id}, event)">
                         +
