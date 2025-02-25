@@ -16,60 +16,62 @@ const calendarData = {
             "backgroundImage": "https://cdn.midjourney.com/48c2157e-af25-46b4-8cd2-1c2b51a6cd45/0_0.png",
             "tags": ["философия", "время", "экзистенциализм", "физика"],
             "references": [
-              "Хайдеггер М. Бытие и время. — М.: Ad Marginem, 1997",
-              "James, William. The Principles of Psychology. Dover Publications, 1950",
-              "Einstein, Albert. Relativity: The Special and General Theory. Crown Publishers, 1961"
+                "Хайдеггер М. Бытие и время. — М.: Ad Marginem, 1997",
+                "James, William. The Principles of Psychology. Dover Publications, 1950",
+                "Einstein, Albert. Relativity: The Special and General Theory. Crown Publishers, 1961"
             ]
         },
         {
-          "id": 2,
-          "start": "2025-03-08T11:55",
-          "end": "2025-03-08T14:55",
-          "title": "Вопрос о технике. Фемтех: слияние женщины и машины",
-          "people": ["Ханна Хёх", "Giannina Censi"],
-          "location": "???",
-          "locationLink": null,
-          "description": "Наука, гендер и технологии XX века. Фемтеория,\nконструктивизм и их влияние на искусство:\nработы Ханны Хёх, Giannina Censi и других.",
-          "image": "https://i.pinimg.com/736x/74/2f/ed/742fede45a47f1b740228ca48a0393c9.jpg",
-          "backgroundImage": "https://i.pinimg.com/736x/74/2f/ed/742fede45a47f1b740228ca48a0393c9.jpg",
-          "tags": ["искусство", "технологии", "феминизм", "авангард"],
-          "references": [
+            "id": 2,
+            "start": "2025-03-08 11:55",
+            "end": "2025-03-08 14:55",
+            "title": "Вопрос о технике. Фемтех: слияние женщины и машины",
+            "people": ["Ханна Хёх", "Giannina Censi"],
+            "location": "???",
+            "locationLink": null,
+            "description": "Как технологии формируют гендерные представления и какое место занимает женщина в мире машин? Мы обсудим феминистскую теорию, влияние конструктивизма и футуризма на искусство, а также рассмотрим работы Ханны Хёх и Giannina Censi, чьи практики соединяют тело, механику и новые медиа. От фотомонтажа до киберфеминизма — поговорим о том, как технологии и искусство переосмысливают границы женского тела и идентичности.",
+            "image": "https://i.pinimg.com/736x/74/2f/ed/742fede45a47f1b740228ca48a0393c9.jpg",
+            "backgroundImage": "https://i.pinimg.com/736x/74/2f/ed/742fede45a47f1b740228ca48a0393c9.jpg",
+            "tags": ["искусство", "технологии", "феминизм", "авангард"],
+            "references": [
               "Höch, Hannah. Picture Book. Green Box, 2010",
               "Lista, Giovanni. Futurism & Photography. Merrell Publishers, 2003"
-          ]
-      } ,
+            ]
+        },          
 
-      {
-        "id": 3,
-        "start": "2025-03-15 11:55",
-        "end": "2025-03-15 14:55",
-        "title": "Perfect Saturday",
-        "people": ["Wim Wenders"],
-        "location": "???",
-        "locationLink": null,
-        "description": `Предлагаю нам с вами просто собраться и обсудить этот безусловно приятный фильм, упомянутые там книги и музыкальные произведения, культурные особенности Японии и многое другое.`,
-        "image": "https://i.pinimg.com/736x/6b/92/34/6b9234e2e8667b773e0d52b8f98298bb.jpg",
-        "backgroundImage": "https://i.pinimg.com/736x/6b/92/34/6b9234e2e8667b773e0d52b8f98298bb.jpg",
-        "tags": ["искусство","кино", "япония"],
-        "references": [
-        ]
-    } ,
-
-    {
-        "id": 4,
-        "start": "2025-03-01 11:55",
-        "end": "2025-03-01 14:55",
-        "title": "Баньши Варшавы",
-        "people": ["Кьеркегор, Макдонна, Хайдеггер"],
-        "location": "???",
-        "locationLink": null,
-        "description": ``,
-        "image": "https://i.pinimg.com/736x/94/54/07/9454071acae1fb06d92ab8a3565b30b5.jpg",
-        "backgroundImage": "https://i.pinimg.com/736x/94/54/07/9454071acae1fb06d92ab8a3565b30b5.jpg",
-        "tags": ["философия", "кино", "экзистенциализм"],
-        "references": [
-        ]
-    } 
+        {
+            "id": 3,
+            "start": "2025-03-15 11:55",
+            "end": "2025-03-15 14:55",
+            "title": "Perfect Saturday",
+            "people": ["Wim Wenders"],
+            "location": "???",
+            "locationLink": null,
+            "description": `Приглашаю вас на теплую и душевную встречу, посвященную фильму *Perfect Days* Вима Вендерса.
+          Мы обсудим саму картину, упомянутые там книги и музыкальные произведения.
+          Поговорим о культурных особенностях Японии, простых радостях жизни, минимализме и смысле повседневных ритуалов.
+          Это отличная возможность погрузиться в атмосферу фильма, поделиться впечатлениями и, возможно, открыть для себя что-то новое.`,
+            "image": "https://i.pinimg.com/736x/6b/92/34/6b9234e2e8667b773e0d52b8f98298bb.jpg",
+            "backgroundImage": "https://i.pinimg.com/736x/6b/92/34/6b9234e2e8667b773e0d52b8f98298bb.jpg",
+            "tags": ["искусство", "кино", "япония", "киноанализ", "философия", "минимализм", "музыка", "литература", "культура"],
+            "references": []
+        },
+          
+        {
+            "id": 4,
+            "start": "2025-03-01 11:55",
+            "end": "2025-03-01 14:55",
+            "title": "Баньши Варшавы",
+            "people": ["Кьеркегор", "Макдона", "Хайдеггер"],
+            "location": "???",
+            "locationLink": null,
+            "description": "Последнее произведение режиссера Мартина Макдоны \"Банши Инишерина\" представляет собой трагикомедию, которая исследует сложные человеческие взаимоотношения, насилие и одиночество. Проще подумать о том, какой проблематики в этом фильме нет места, чем стараться найти и перечислить все и вся. Как когда-то цивилизация и культура с ее проблемами вышла из маленьких общин, так и простая жизнь островного поселения содержит в себе все конфликты и социальные тревоги разом.",
+            "image": "https://i.pinimg.com/736x/94/54/07/9454071acae1fb06d92ab8a3565b30b5.jpg",
+            "backgroundImage": "https://i.pinimg.com/736x/94/54/07/9454071acae1fb06d92ab8a3565b30b5.jpg",
+            "tags": ["философия", "кино", "экзистенциализм"],
+            "references": []
+        }
+          
     ]
 };
 
@@ -122,11 +124,11 @@ function fetchEvents() {
 function renderCalendar() {
     const monthYear = document.getElementById('monthYear');
     const calendar = document.getElementById('calendar');
-    
+
     // Set month and year
-    monthYear.textContent = currentDate.toLocaleString('default', { 
-        month: 'long', 
-        year: 'numeric' 
+    monthYear.textContent = currentDate.toLocaleString('default', {
+        month: 'long',
+        year: 'numeric'
     });
 
     // Clear previous calendar
@@ -135,7 +137,7 @@ function renderCalendar() {
     // Get first day of month and total days
     const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
-    
+
     // Add days from previous month
     const startingDay = firstDay.getDay();
     for (let i = 0; i < startingDay; i++) {
@@ -157,10 +159,10 @@ function renderCalendar() {
             // Parse the date string correctly
             const [datePart] = event.start.split(' ');
             const [year, month, date] = datePart.split('-').map(Number);
-            
-            return date === day && 
-                   (month - 1) === currentDate.getMonth() && // Month is 0-based in JS
-                   year === currentDate.getFullYear();
+
+            return date === day &&
+                (month - 1) === currentDate.getMonth() && // Month is 0-based in JS
+                year === currentDate.getFullYear();
         });
 
         dayEvents.forEach(event => {
@@ -171,12 +173,12 @@ function renderCalendar() {
                 ${event.title}
                 <span class="participant-count">${eventParticipants[event.id] || 0}</span>
             `;
-            
+
             eventDiv.addEventListener('click', (e) => {
                 e.stopPropagation();
                 toggleEventDetails(event, eventDiv);
             });
-            
+
             dayDiv.appendChild(eventDiv);
         });
 
@@ -197,7 +199,7 @@ function createGoogleCalendarUrl(event) {
     // Format dates for Google Calendar
     const startDate = event.start.replace(' ', 'T');
     const endDate = event.end.replace(' ', 'T');
-    
+
     // Create calendar URL with parameters
     const url = new URL('https://www.google.com/calendar/render');
     url.searchParams.append('action', 'TEMPLATE');
@@ -205,14 +207,14 @@ function createGoogleCalendarUrl(event) {
     url.searchParams.append('dates', `${startDate}/${endDate}`.replace(/[-:]/g, ''));
     url.searchParams.append('details', `${event.description}`);
     url.searchParams.append('location', event.location);
-    
+
     return url.toString();
 }
 
 function toggleEventDetails(event, eventDiv) {
     const existingDetails = eventDiv.querySelector('.event-details');
     const allEvents = document.querySelectorAll('.event.expanded');
-    
+
     // Close any other expanded events first
     allEvents.forEach(el => {
         if (el !== eventDiv) {
@@ -223,26 +225,26 @@ function toggleEventDetails(event, eventDiv) {
             }
         }
     });
-    
+
     // If details already exist, just toggle them
     if (existingDetails) {
         eventDiv.classList.toggle('expanded');
         existingDetails.classList.toggle('show');
         return;
     }
-    
+
     // Create details section
     const details = document.createElement('div');
     details.className = 'event-details';
-    
+
     // Format the time
     const [datePart, timePart] = event.start.split(' ');
     const [startHour, startMinute] = timePart.split(':');
     const [endHour, endMinute] = event.end.split(' ')[1].split(':');
-    
+
     const startTime = `${startHour}:${startMinute}`;
     const endTime = `${endHour}:${endMinute}`;
-    
+
     details.innerHTML = `
         <p class="event-time">
             <span class="time-section">
@@ -267,7 +269,7 @@ function toggleEventDetails(event, eventDiv) {
         <p class="event-people"><span class="event-details-label">People:</span> ${event.people.join(', ')}</p>
         <p class="event-description"><span class="event-details-label">Description:</span><br>${event.description}</p>
     `;
-    
+
     eventDiv.appendChild(details);
     eventDiv.classList.add('expanded');
     details.classList.add('show');
@@ -317,15 +319,14 @@ function initializeMobileView() {
             const event = eventsMobile[currentIndex]; // Get the current event
             const date = new Date(event.start.split(' ')[0]);
 
-            mobileHeader.textContent = date.toLocaleDateString('ru-RU', { 
-                weekday: 'long', 
-                month: 'long', 
-                day: 'numeric' 
+            mobileHeader.textContent = date.toLocaleDateString('ru-RU', {
+                weekday: 'long',
+                month: 'long',
+                day: 'numeric'
             });
 
             mobileCards.innerHTML = eventsMobile.map((evt, index) => `
-                <div class="mobile-card ${
-                    index === currentIndex ? 'active' :
+                <div class="mobile-card ${index === currentIndex ? 'active' :
                     index < currentIndex ? 'prev' : 'next'
                 }">
                     <span class="participant-count">${eventParticipants[evt.id] || 0}</span>
@@ -367,7 +368,7 @@ function initializeMobileView() {
             touchEndX = e.touches[0].clientX;
             const diff = touchEndX - touchStartX;
             const cards = document.querySelectorAll('.mobile-card');
-            
+
             cards.forEach((card, index) => {
                 const offset = (index - currentIndex) * 100;
                 const dragOffset = diff / mobileCards.offsetWidth * 100;
@@ -401,10 +402,10 @@ fetchEvents();
 function handlePlusClick(eventId, e) {
     e.stopPropagation();
     eventParticipants[eventId] = (eventParticipants[eventId] || 0) + 1;
-    
+
     // Save to storage
     saveParticipants();
-    
+
     // Update all counters for this event
     document.querySelectorAll(`.event[data-event-id="${eventId}"] .participant-count`).forEach(counter => {
         counter.textContent = eventParticipants[eventId];
@@ -421,7 +422,7 @@ function handlePlusClick(eventId, e) {
 function handleTouchButton(button, eventId) {
     let touchStartTime;
     let touchEndTime;
-    
+
     button.addEventListener('touchstart', (e) => {
         e.preventDefault();
         touchStartTime = new Date().getTime();
@@ -432,7 +433,7 @@ function handleTouchButton(button, eventId) {
         e.preventDefault();
         touchEndTime = new Date().getTime();
         button.style.transform = 'scale(1)';
-        
+
         // Only trigger if it was a quick tap (less than 200ms)
         if (touchEndTime - touchStartTime < 200) {
             handlePlusClick(eventId, e);
@@ -479,7 +480,7 @@ function initializeViewToggle() {
         });
     });
 
-     // Set initial state
+    // Set initial state
     calendarContainer.style.display = 'none'; // Hide calendar by default
     calendarView.classList.remove('active');
     cardsView.classList.add('active');
@@ -516,7 +517,7 @@ function renderCards(tab = 'upcoming') {
     container.innerHTML = eventsToRender.map(event => {
         const isPastEvent = new Date(event.start) < today; // Check if the event is in the past
         const hasBackgroundImage = event.backgroundImage && event.backgroundImage.trim() !== '';
-        
+
         // Determine the theme based on the background image presence
         const theme = hasBackgroundImage ? colorThemes.light : colorThemes.dark;
 
@@ -559,7 +560,7 @@ function renderCards(tab = 'upcoming') {
 // Helper function to format date
 function formatEventDate(dateString) {
     const date = new Date(dateString);
-    return date.toLocaleDateString('ru-RU', { 
+    return date.toLocaleDateString('ru-RU', {
         day: 'numeric',
         month: 'long',
         year: 'numeric'
