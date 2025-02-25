@@ -25,7 +25,7 @@ const calendarData = {
           "id": 2,
           "start": "2025-03-08 12:00",
           "end": "2025-03-08 15:00",
-          "title": "Фемтех: слияние женщины и машины",
+          "title": "Вопрос о технике. Фемтех: слияние женщины и машины",
           "people": ["Ханна Хёх", "Giannina Censi"],
           "location": "???",
           "locationLink": null,
