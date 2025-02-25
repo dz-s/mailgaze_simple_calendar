@@ -5,8 +5,8 @@ const calendarData = {
     "events": [
         {
             "id": 1,
-            "start": "2025-02-22 12:00",
-            "end": "2025-02-22 15:00",
+            "start": "2025-02-22 11:55",
+            "end": "2025-02-22 14:55",
             "title": "(Во)Время",
             "people": ["Мартин Хайдеггер", "Уильям Джеймс", "Альберт Эйнштейн"],
             "location": "???",
@@ -23,8 +23,8 @@ const calendarData = {
         },
         {
           "id": 2,
-          "start": "2025-03-08 12:00",
-          "end": "2025-03-08 15:00",
+          "start": "2025-03-08T11:55",
+          "end": "2025-03-08T14:55",
           "title": "Вопрос о технике. Фемтех: слияние женщины и машины",
           "people": ["Ханна Хёх", "Giannina Censi"],
           "location": "???",
@@ -41,8 +41,8 @@ const calendarData = {
 
       {
         "id": 3,
-        "start": "2025-03-15 12:00",
-        "end": "2025-03-15 15:00",
+        "start": "2025-03-15 11:55",
+        "end": "2025-03-15 14:55",
         "title": "Perfect Saturday",
         "people": ["Wim Wenders"],
         "location": "???",
@@ -57,8 +57,8 @@ const calendarData = {
 
     {
         "id": 4,
-        "start": "2025-03-1 12:00",
-        "end": "2025-03-1 15:00",
+        "start": "2025-03-01 11:55",
+        "end": "2025-03-01 14:55",
         "title": "Баньши Варшавы",
         "people": ["Кьеркегор, Макдонна, Хайдеггер"],
         "location": "???",
@@ -114,7 +114,7 @@ function saveParticipants() {
 function fetchEvents() {
     events = calendarData.events;
     loadParticipants();  // Load stored participants
-    renderCalendar();
+    renderCards('upcoming');
     initializeMobileView();
     initializeViewToggle();
 }
@@ -203,7 +203,7 @@ function createGoogleCalendarUrl(event) {
     url.searchParams.append('action', 'TEMPLATE');
     url.searchParams.append('text', event.title);
     url.searchParams.append('dates', `${startDate}/${endDate}`.replace(/[-:]/g, ''));
-    url.searchParams.append('details', `${event.description}\n\nParticipants: ${event.people.join(', ')}`);
+    url.searchParams.append('details', `${event.description}`);
     url.searchParams.append('location', event.location);
     
     return url.toString();
@@ -458,6 +458,7 @@ function initializeViewToggle() {
         cardsView.classList.remove('active');
         calendarContainer.style.display = 'block';
         cardsContainer.style.display = 'none';
+        renderCalendar();
     });
 
     cardsView.addEventListener('click', () => {
@@ -478,9 +479,12 @@ function initializeViewToggle() {
         });
     });
 
-    // Set initial state
-    calendarContainer.style.display = 'block';
-    cardsContainer.style.display = 'none';
+     // Set initial state
+    calendarContainer.style.display = 'none'; // Hide calendar by default
+    calendarView.classList.remove('active');
+    cardsView.classList.add('active');
+    cardsContainer.style.display = 'block'; // Show cards by default
+    renderCards('upcoming'); // Render upcoming events in cards view
 }
 
 function renderCards(tab = 'upcoming') {
@@ -539,18 +543,6 @@ function renderCards(tab = 'upcoming') {
                     ${marked.parse(event.description)}
                 </div>
 
-                <hr/>
-
-                ${event.references ? `
-                    <div class="event-references">
-                        <ul>
-                            ${event.references.map(ref => `
-                                <li style="color: ${theme.textColor};">${ref}</li>
-                            `).join('')}
-                        </ul>
-                    </div>
-                ` : ''}
-           
                 <div class="calendar-actions" style="display: ${new Date(event.start) >= today ? 'flex' : 'none'};">
                     <a href="${createGoogleCalendarUrl(event)}" target="_blank" class="calendar-link">
                         📅 Add to Calendar
