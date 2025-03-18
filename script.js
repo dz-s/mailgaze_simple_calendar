@@ -74,6 +74,25 @@ const calendarData = {
             "backgroundImage": "https://i.pinimg.com/736x/94/54/07/9454071acae1fb06d92ab8a3565b30b5.jpg",
             "tags": ["философия", "кино", "экзистенциализм"],
             "references": []
+        },
+        {
+            "id": 5,
+            "start": "2025-03-22T12:00",
+            "end": "2025-03-22T15:00",
+            "title": "Perfect Saturday 🚽📼🇯🇵",
+            "people": [
+                "Wim Wenders",
+                "Byung-Chul Han",
+                "Nietzsche"
+            ],
+            "location": "XOXO Coffee",
+            "locationLink": "https://maps.app.goo.gl/vonENerm2rqTDwzB9",
+            "price": "30 PLN",
+            "description": "\"Each day is a little life: every waking and rising a little birth, every fresh morning a little youth, every going to rest and sleep a little death.\"\n\nПоговорим о восприятии мира внешнего, о восприятии себя и направленности.\nО \"дороге\" как метафоре в картинах Вендерса.\nНемножечко о книге Burnout Society.\nПоговорим о культурных особенностях Японии, простых радостях жизни, минимализме и смысле повседневных ритуалов.",
+            "image": "https://i.pinimg.com/736x/6b/92/34/6b9234e2e8667b773e0d52b8f98298bb.jpg",
+            "backgroundImage": "https://i.pinimg.com/736x/6b/92/34/6b9234e2e8667b773e0d52b8f98298bb.jpg",
+            "tags": ["философия", "кино", "экзистенциализм", "япония", "минимализм", "музыка", "литература"],
+            "references": []
         }
           
     ]
